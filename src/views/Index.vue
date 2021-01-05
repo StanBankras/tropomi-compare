@@ -1,13 +1,17 @@
 <template>
   <header-comp/>
+  <explanation/>
+  <compare/>
 </template>
 
 <script>
 import HeaderComp from '@/components/Header';
+import Explanation from '@/components/explanation/Index';
+import Compare from '@/components/compare/Index';
 
 export default {
   components: {
-    HeaderComp
+    Compare, HeaderComp, Explanation
   }
 }
 </script>
