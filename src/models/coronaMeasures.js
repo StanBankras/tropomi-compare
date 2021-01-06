@@ -1,7 +1,9 @@
-const data = require('../assets/covidMeasures.json')
 // const fs = require('fs')
 
-export const coronaMeasures = data
+export async function coronaMeasures() {
+    const data = await fetch('./json/covidMeasures.json').then(res => res.json());
+    return data;
+}
     // .filter(getCountries) //filter only the countries we need
     // .map(countryInfo) //map only the values we need of each key
 

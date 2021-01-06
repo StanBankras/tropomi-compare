@@ -4,6 +4,7 @@
   <explanation/>
   <compare/>
   <chart/>
+  {{ coronaMeasures }}
 </template>
 
 <script>

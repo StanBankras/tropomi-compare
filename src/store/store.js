@@ -1,14 +1,13 @@
 import { createStore } from "vuex";
 import { measures } from '@/models/measures.js';
 import { measuresPerCountryCode } from '@/models/countryMeasures.js';
-import { coronaMeasures } from '@/models/coronaMeasures.js'
 
 import lookup from 'country-code-lookup';
 
 const store = createStore({
   state() {
     return {
-      coronaMeasures: coronaMeasures,
+      coronaMeasures: [],
       measures: measures,
       measuresPerCountryCode,
       countries: [
@@ -39,6 +38,18 @@ const store = createStore({
           countryCode: country.countryCode
         }
       })
+    }
+  },
+  mutations: {
+    SET_COVID_MEASURES(state, measures) {
+      state.coronaMeasures = measures;
+    }
+  },
+  actions: {
+    setCovidMeasures: ({ commit }) => {
+      fetch('./json/covidMeasures.json').then(res => res.json()).then(res => {
+        commit('SET_COVID_MEASURES', res);
+      });
     }
   }
 });
