@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
 import { measures } from '@/models/measures.js';
 import { measuresPerCountryCode } from '@/models/countryMeasures.js';
+import { coronaMeasures } from '@/models/coronaMeasures.js'
 
 import lookup from 'country-code-lookup';
 
 const store = createStore({
   state() {
     return {
+      coronaMeasures: coronaMeasures,
       measures: measures,
       measuresPerCountryCode,
       countries: [
@@ -24,6 +26,7 @@ const store = createStore({
     }
   },
   getters: {
+    coronaMeasures: state => state.coronaMeasures,
     measures: state => state.measures,
     measuresPerCountryCode: state => state.measuresPerCountryCode,
     countries: state => {

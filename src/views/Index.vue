@@ -14,6 +14,11 @@ import Chart from '@/components/Chart';
 export default {
   components: {
     Compare, HeaderComp, Explanation, Chart
+  },
+  computed:{
+     coronaMeasures(){
+       return this.$store.getters.coronaMeasures
+     } 
   }
 }
 </script>
