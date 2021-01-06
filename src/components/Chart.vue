@@ -8,7 +8,7 @@
 
   export default {
     async mounted () {
-      const data = await fetch('./json/no2/beijing.json').then(res => res.json());
+      const data = await fetch('./json/no2/milan.json').then(res => res.json());
       const dates = data.map(d => d.date.value).filter(d => new Date(d).getFullYear() === 2020).map(d => this.$date(new Date(d)).format('DD-MM-YY'));
       let dataValues = [];
 
