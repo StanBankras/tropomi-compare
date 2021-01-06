@@ -16,6 +16,11 @@ import D3 from '@/components/D3';
 export default {
   components: {
     Compare, HeaderComp, Explanation, Chart, D3
+  },
+  computed:{
+     coronaMeasures(){
+       return this.$store.getters.coronaMeasures
+     } 
   }
 }
 </script>
