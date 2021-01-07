@@ -1,10 +1,11 @@
 <template>
-  <d3/>
-  <header-comp/>
-  <explanation/>
-  <compare/>
-  <chart/>
-  {{ coronaMeasures }}
+  <div id="content">
+    <d3/>
+    <header-comp/>
+    <explanation/>
+    <compare/>
+    <chart/>
+  </div>
 </template>
 
 <script>
@@ -17,11 +18,6 @@ import D3 from '@/components/D3';
 export default {
   components: {
     Compare, HeaderComp, Explanation, Chart, D3
-  },
-  computed:{
-     coronaMeasures(){
-       return this.$store.getters.coronaMeasures
-     } 
   }
 }
 </script>
