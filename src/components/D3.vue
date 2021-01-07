@@ -1,6 +1,6 @@
 <template>
   <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
-    <rect :width="chartWidth" :height="chartHeight + 10" fill="#F2F2F2"/>
+    <rect :width="chartWidth - yPadding * 2" :height="chartHeight - xPadding * 2" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`" fill="#F2F2F2"/>
     <g transform="translate(0, 40)">
       <g class="y-axis" fill="none" transform="translate(20, 0)">
         <g
@@ -41,7 +41,13 @@
       <stop class="end" offset="0%" stop-color="#6BA1FF" stop-opacity="1"/>
     </linearGradient>
   </svg>
-  <button @click="selectedCountry = countryCode" v-for="countryCode in Object.keys(no2PerCountry)" :key="countryCode">{{ countryCode }}</button>
+  <div class="countries">
+    <button
+      @click="selectedCountry = countryCode"
+      v-for="countryCode in Object.keys(no2PerCountry)"
+      :key="countryCode"
+      :class="{ active: selectedCountry === countryCode }">{{ countryCode }}</button>
+  </div>
 </template>
 
 <script>
@@ -69,7 +75,11 @@ export default {
       return this.yScale.ticks(20);
     },
     xTicks() {
-      return this.xScale.ticks(53);
+      let ticks = 53;
+      if(this.windowWidth < 840) ticks = 26
+      if(this.windowWidth < 510) ticks = 13
+
+      return this.xScale.ticks(ticks);
     },
     line() {
       return line()
@@ -96,20 +106,23 @@ export default {
       }
 
       return no2;
+    },
+    chartWidth() {
+      return this.windowWidth - 50;
     }
   },
   data() {
     return { 
-      chartWidth: 500,
       chartHeight: 400,
       yPadding: 20,
       xPadding: 20,
+      windowWidth: 500,
       selectedCountry: 'IT'
     }
   },
   mounted() {
     this.$store.dispatch('getNO2Data');
-    this.chartWidth = window.innerWidth - 50;
+    this.windowWidth = window.innerWidth;
     window.addEventListener('resize', () => this.onResize());
   },
   beforeUnmount() {
@@ -117,7 +130,7 @@ export default {
   },
   methods: {
     onResize() {
-      this.chartWidth = window.innerWidth - 50;
+      this.windowWidth = window.innerWidth;
     }
   }
 }
@@ -131,5 +144,24 @@ export default {
     stroke: url(#svgGradient);
     stroke-width: 2px;
     transition: .3s;
+  }
+  .countries {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--space-blue);
+      color: white;
+      font-weight: bold;
+      outline: none;
+      border: 0px;
+      cursor: pointer;
+      transition: .3s;
+      &.active, &:hover {
+        background-color: var(--black-shadow);
+      }
+    }
   }
 </style>

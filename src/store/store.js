@@ -62,9 +62,6 @@ const store = createStore({
         fetch(`./json/no2/${ country.city.toLowerCase().split(' ').join('-') }.json`)
           .then(res => res.json())
           .then(data => {
-            if(country.countryCode === 'IS') {
-              console.log(data);
-            }
             commit('SET_COUNTRY_NO2', { countryCode: country.countryCode, values: data })
           });
       });
