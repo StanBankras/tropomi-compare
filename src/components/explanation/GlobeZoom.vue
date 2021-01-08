@@ -150,10 +150,10 @@
 	}
 	.arrow{
 		position: absolute;
-		height: 21em;
+		height: 22.5em;
 		transform: translate(1300%, 80%);
 		z-index: 6;
-		top:55.5em;
+		top:51.5em;
 		left:5em;
 	}
 	.bigCloud{
@@ -172,13 +172,13 @@
 	}
 	.info-troposphere{
 		position: absolute;
-		top:82em;
-		left:12em;
+		top:80em;
+		left:14em;
 		z-index: 6;
 
 	}
 	.info-troposphere > p:first-child{
-		color: var(--text-contrast);
+		background-color: var(--text-contrast);
 		padding: 0.2em 1.875em 0.2em 1.875em;
 		border-radius: 25px;
 		font-size: 2rem;
