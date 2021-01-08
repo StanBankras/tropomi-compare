@@ -1,6 +1,17 @@
 <template>
   <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
-    <rect :width="chartWidth - yPadding * 2" :height="chartHeight - xPadding * 2" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`" fill="#F2F2F2"/>
+    <g :transform="`translate(${ yPadding * 2 }, ${ xPadding })`">
+      <rect
+        :width="chartWidth - yPadding * 2"
+        :height="chartHeight - xPadding * 2"
+        fill="#F2F2F2"/>
+      <rect
+        :x="xScale(3) + 0.5 * xPadding"
+        :y="chartHeight - xPadding * 2 - 10"
+        :height="10"
+        :width="xScale(30) - xScale(3)"
+        fill="black"/>
+    </g>
     <g transform="translate(0, 40)">
       <g class="y-axis" fill="none" transform="translate(20, 0)">
         <g
@@ -17,7 +28,7 @@
           <text opacity="0.7" fill="currentColor" x="-9" dy="0.32em">{{ tick }}</text>
         </g>
       </g>
-      <g class="x-axis" fill="none" transform="translate(20, 0)">
+      <g class="x-axis" fill="none" :transform="`translate(${ yPadding * 0.5 + 20 }, 0)`">
         <g
           v-for="tick in xTicks"
           :key="tick"
@@ -32,11 +43,11 @@
           <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ tick }}</text>
         </g>
       </g>
-      <g :transform="`translate(${ xPadding * 2 }, ${ - yPadding })`">
+      <g :transform="`translate(${ xPadding * 2.5 }, ${ - yPadding })`">
         <path class="line" :d="line(chartData)"/>
       </g>
     </g>
-    <linearGradient id="svgGradient" x1="0%" x2="0%" :y1="`${ 100 - (chartHeight - yPadding * 2 - yScale(0)) / (chartHeight - yPadding * 2) * 100 }%`" y2="100%">
+    <linearGradient id="svgGradient" x1="0%" x2="0%" :y1="`${ 100 - (chartHeight * multiplier - yPadding * 2 - yScale(0)) / (chartHeight - yPadding * 2) * 100 }%`" y2="100%">
       <stop class="start" offset="0%" stop-color="#FF6363" stop-opacity="1"/>
       <stop class="end" offset="0%" stop-color="#6BA1FF" stop-opacity="1"/>
     </linearGradient>
@@ -63,7 +74,7 @@ export default {
     },
     yScale() {
       return scaleLinear()
-       .range([0, this.chartHeight - this.yPadding * 2])
+       .range([0, this.chartHeight * this.multiplier - this.yPadding * 2])
        .domain([this.maxValue, this.minValue]);
     },
     xScale() {
@@ -113,9 +124,10 @@ export default {
   },
   data() {
     return { 
-      chartHeight: 400,
+      chartHeight: 600,
       yPadding: 20,
       xPadding: 20,
+      multiplier: 0.85,
       windowWidth: 500,
       selectedCountry: 'IT'
     }
