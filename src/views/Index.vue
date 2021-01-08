@@ -4,7 +4,6 @@
   <explanation/>
   <compare/>
   <chart/>
-  {{ coronaMeasures }}
 </template>
 
 <script>
@@ -21,7 +20,7 @@ export default {
   computed:{
      coronaMeasures(){
        return this.$store.getters.coronaMeasures
-     } 
+     }
   }
 }
 </script>
