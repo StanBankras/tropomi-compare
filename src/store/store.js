@@ -18,16 +18,17 @@ const store = createStore({
         { countryCode: 'IT', city: 'Milan' },
         { countryCode: 'GB', city: 'London' },
         { countryCode: 'JP', city: 'Tokyo' },
-        { countryCode: 'IS', city: 'Reykjavík' },
+        { countryCode: 'IS', city: 'Reykjavik' },
         { countryCode: 'LV', city: 'Riga' }
       ],
-      selectedCountry: undefined
+      no2PerCountry: {}
     }
   },
   getters: {
     coronaMeasures: state => state.coronaMeasures,
     measures: state => state.measures,
     measuresPerCountryCode: state => state.measuresPerCountryCode,
+    no2PerCountry: state => state.no2PerCountry,
     countries: state => {
       return state.countries.map(country => {
         const details = lookup.byIso(country.countryCode);
@@ -43,12 +44,26 @@ const store = createStore({
   mutations: {
     SET_COVID_MEASURES(state, measures) {
       state.coronaMeasures = measures;
+    },
+    SET_COUNTRY_NO2(state, payload) {
+      state.no2PerCountry[payload.countryCode] = payload.values;
     }
   },
   actions: {
     setCovidMeasures: ({ commit }) => {
-      fetch('./json/covidMeasures.json').then(res => res.json()).then(res => {
-        commit('SET_COVID_MEASURES', res);
+      fetch('./json/covidMeasures.json')
+        .then(res => res.json())
+        .then(res => {
+          commit('SET_COVID_MEASURES', res);
+        });
+    },
+    getNO2Data: ({ commit, state }) => {
+      state.countries.forEach(country => {
+        fetch(`./json/no2/${ country.city.toLowerCase().split(' ').join('-') }.json`)
+          .then(res => res.json())
+          .then(data => {
+            commit('SET_COUNTRY_NO2', { countryCode: country.countryCode, values: data })
+          });
       });
     }
   }
