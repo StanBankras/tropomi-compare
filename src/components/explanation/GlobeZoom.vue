@@ -150,11 +150,11 @@
 	}
 	.arrow{
 		position: absolute;
-		height: 22.5em;
+		height: 20.75em;
 		transform: translate(1300%, 80%);
 		z-index: 6;
-		top:51.5em;
-		left:5em;
+		top:55.25em;
+		left:6.75em;
 	}
 	.bigCloud{
 		position: absolute;
@@ -172,7 +172,7 @@
 	}
 	.info-troposphere{
 		position: absolute;
-		top:80em;
+		top:81em;
 		left:14em;
 		z-index: 6;
 
