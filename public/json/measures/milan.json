@@ -1,0 +1,48 @@
+[
+  {
+    "movementRestrictions": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "31-12-2020",
+          "endDate": "02-01-2021",
+          "goal": "Less cars on the road",
+          "measure": "People need to be able to show where they are going"
+        }
+      ]
+    },
+    "socialDistancing": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "31-12-2020",
+          "endDate": "02-01-2021",
+          "goal": "Less cars on the road",
+          "measure": "People need to be able to show where they are going"
+        }
+      ]
+    },
+    "quarantineIsolation": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "31-12-2020",
+          "endDate": "02-01-2021",
+          "goal": "Less cars on the road",
+          "measure": "People need to be able to show where they are going"
+        }
+      ]
+    },
+    "stayAtHomeOrders": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "31-12-2020",
+          "endDate": "02-01-2021",
+          "goal": "Less cars on the road",
+          "measure": "People need to be able to show where they are going"
+        }
+      ]
+    }
+  } 
+]
