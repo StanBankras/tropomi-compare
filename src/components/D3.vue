@@ -79,7 +79,7 @@
             :width="chartWidth - yPadding * 2"
             :height="chartHeight - xPadding * 2"/>
         </clipPath>
-        <linearGradient :id="`svgGradient-${id}`" x1="0%" x2="0%" :y1="`${ 100 - (chartHeight * multiplier - xPadding * 2 - (yScale(0) || 0)) / (chartHeight * multiplier - xPadding * 2) * 100 }%`" y2="100%">
+        <linearGradient :id="`svgGradient-${id}`" x1="0%" x2="0%" :y1="`${ maxValue / (maxValue + Math.abs(minValue)) * 100 }%`" y2="100%">
           <stop class="start" offset="0%" stop-color="#FF6363" stop-opacity="1"/>
           <stop class="end" offset="0%" stop-color="#6BA1FF" stop-opacity="1"/>
         </linearGradient>
@@ -91,7 +91,7 @@
         v-for="countryCode in Object.keys(no2PerCountry)"
         :key="countryCode"
         :class="{ active: selectedCountry === countryCode }">{{ countryCode }}</button>
-    </div>    
+    </div>
   </div>
 </template>
 
@@ -99,8 +99,8 @@
 import { scaleLinear, line } from 'd3';
 
 export default {
-  props: ['week', 'width', 'id', 'zoomMeasure'],
-  emits: ['week', 'measure', 'measures'],
+  props: ['week', 'width', 'id', 'zoomMeasure', 'minMax'],
+  emits: ['week', 'measure', 'measures', 'country'],
   computed: {
     maxValue() {
       return Math.max(...this.chartData.map(d => d[1]));
@@ -111,7 +111,7 @@ export default {
     yScale() {
       return scaleLinear()
        .range([0, this.chartHeight * this.multiplier - this.yPadding * 2])
-       .domain([this.maxValue, this.minValue]);
+       .domain([this.minMax[0] ? this.minMax[0] : this.maxValue, this.minMax[0] ? this.minMax[1] : this.minValue]);
     },
     xScale() {
       return scaleLinear()
@@ -169,7 +169,6 @@ export default {
       yPadding: 20,
       xPadding: 20,
       multiplier: 0.85,
-      windowWidth: 500,
       selectedCountry: 'IT',
       barHeight: 13,
       bars: [
@@ -194,6 +193,7 @@ export default {
   mounted() {
     this.$store.dispatch('getNO2Data');
     this.$emit('measures', this.bars);
+    this.$emit('country', this.selectedCountry);
   },
   methods: {
     clickBar(bar) {
@@ -204,6 +204,11 @@ export default {
     },
     hoverChart(tick) {
       this.$emit('week', tick)
+    }
+  },
+  watch: {
+    selectedCountry() {
+      this.$emit('country', this.selectedCountry);
     }
   }
 }
