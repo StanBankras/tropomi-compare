@@ -34,11 +34,11 @@
 import HeaderComp from '@/components/Header';
 import Explanation from '@/components/explanation/Index';
 import Compare from '@/components/compare/Index';
-import D3 from '@/components/D3';
+// import D3 from '@/components/D3';
 
 export default {
   components: {
-    Compare, HeaderComp, Explanation, D3
+    Compare, HeaderComp, Explanation
   },
   computed: {
     no2PerCountry() {
