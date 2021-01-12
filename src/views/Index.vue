@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <div class="wrap">
+    <!-- <div class="wrap">
       <d3
         @week="week => selectedWeek = week"
         @measures="m => measures[0] = m"
@@ -21,7 +21,7 @@
         :week="selectedWeek"
         :width="windowWidth / 2"
         :id="2"/>
-    </div>
+    </div> -->
     <header-comp/>
     <explanation/>
     <compare/>
@@ -32,11 +32,11 @@
 import HeaderComp from '@/components/Header';
 import Explanation from '@/components/explanation/Index';
 import Compare from '@/components/compare/Index';
-import D3 from '@/components/D3';
+// import D3 from '@/components/D3';
 
 export default {
   components: {
-    Compare, HeaderComp, Explanation, D3
+    Compare, HeaderComp, Explanation
   },
   computed: {
     no2PerCountry() {

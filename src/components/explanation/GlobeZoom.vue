@@ -70,6 +70,7 @@
   align-items: center;
   position: relative;
 
+
   .world-container {
     margin-top: 10em;
   }
@@ -86,9 +87,9 @@
     background-color: #6e99d7;
     border-radius: 50%;
     z-index: 4;
-
     transform: scale(1.2, 1.8);
     bottom: 5em;
+		box-sizing: border-box;
   }
   .circle2 {
     position: absolute;
@@ -280,6 +281,7 @@
   }
 }
 @media only screen and (max-width: 320px) {
+
 	/* mobile 320px wide */
 	.container {
   background-image: linear-gradient(#1a1a1a, #1f34a4);
@@ -302,14 +304,12 @@
 		bottom: -9em;
   }
   .circle1 {
-
     position: absolute;
     height: 20vh;
     width: 100vw;
     background-color: #6e99d7;
     border-radius: 50%;
     z-index: 4;
-
     transform: scale(2, 2.6);
     bottom: 1em;
   }
@@ -399,8 +399,8 @@
   }
   .arrow {
     position: relative;
-    height: 6.2em;
-    transform: translate(1000%, 783%);
+    height: 7.2em;
+    transform: translate(850%, 674%);
     z-index: 6;
     top: 0;
     left: 0;
