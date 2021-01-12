@@ -279,7 +279,7 @@
 		line-height: 1.2em;
   }
 }
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 600px) {
 	/* mobile 320px wide */
 	.container {
   background-image: linear-gradient(#1a1a1a, #1f34a4);

@@ -1,24 +1,108 @@
 [
   {
     "movementRestrictions": {
-      "color": "yellow",
+      "color": "red",
       "measures": [
         {
-          "startDate": "31-12-2020",
-          "endDate": "02-01-2021",
-          "goal": "Less cars on the road",
-          "measure": "People need to be able to show where they are going"
+          "startDate": "1-31-2020",
+          "endDate": "12-31-2020",
+          "goal": "Closing borders",
+          "measure": "Limited flights to and from China"
+        },
+        {
+          "startDate": "3-9-2020",
+          "endDate": "3-9-2020",
+          "goal": "Closing borders",
+          "measure": "Entry of Italy banned, apart for essential reasons"
+        },
+        {
+          "startDate": "3-13-2020",
+          "endDate": "3-13-2020",
+          "goal": "Closing borders",
+          "measure": "Only one airport per regions remains open"
+        },
+        {
+          "startDate": "3-23-2020",
+          "endDate": "4-13-2020",
+          "goal": "Closing borders",
+          "measure": "Only one airport per regions remains open"
         }
       ]
     },
     "socialDistancing": {
-      "color": "yellow",
+      "color": "pink",
       "measures": [
         {
-          "startDate": "31-12-2020",
-          "endDate": "02-01-2021",
-          "goal": "Less cars on the road",
-          "measure": "People need to be able to show where they are going"
+          "startDate": "2-25-2020",
+          "endDate": "2-25-2020",
+          "goal": "Social distancing",
+          "measure": "Closure of museums, cancelling of educational trips"
+        },
+        {
+          "startDate": "3-9-2020",
+          "endDate": "3-9-2020",
+          "goal": "Social distancing",
+          "measure": "Ban of public gatherings, e.g. sport or events (no maximum number specified)"
+        },
+        {
+          "startDate": "3-11-2020",
+          "endDate": "3-11-2020",
+          "goal": "Social distancing",
+          "measure": "Closure of all public services and places with close contact nationally - Some services are being closed, including bars, restaurant and alike as well as retail stores; production facilities remain open"
+        },
+        {
+          "startDate": "3-20-2020",
+          "endDate": "3-20-2020",
+          "goal": "Social distancing",
+          "measure": "Further closures of public spaces were applied, including closing cementaries cycle paths public parks and playgrounds closing"
+        },
+        {
+          "startDate": "4-11-2020",
+          "endDate": "4-11-2020",
+          "goal": "Social distancing",
+          "measure": "Some exemptions added to essential business continuation, including book stores and children clothes stores, forestry work"
+        },
+        {
+          "startDate": "4-14-2020",
+          "endDate": "5-3-2020",
+          "goal": "Social distancing",
+          "measure": "Extension until 3rd May: all schools, parks and playgrounds, as well for all sports activities, including training and professionals"
+        },
+        {
+          "startDate": "5-4-2020",
+          "endDate": "5-4-2020",
+          "goal": "Social distancing",
+          "measure": "Take-away and food catering allowed again, Travel outside the region will instead be allowed for work, health, urgency reasons and for returning to one's home, Manufacturing, construction, real estate brokerage and wholesale trade may restart again business under safety measures"
+        },
+        {
+          "startDate": "5-4-2020",
+          "endDate": "5-4-2020",
+          "goal": "Social distancing",
+          "measure": "Public transport is increased again gradually"
+        },
+        {
+          "startDate": "5-17-2020",
+          "endDate": "5-17-2020",
+          "goal": "Social distancing",
+          "measure": "People are allowed to travel with their pets, including across regional borders in line with the activities already permitted for travel"
+        },
+        {
+          "startDate": "5-25-2020",
+          "endDate": "5-25-2020",
+          "goal": "Social distancing",
+          "measure": "Swimming pools, gyms and other sports facilities reopening "
+        },
+        {
+          "startDate": "5-18-2020",
+          "endDate": "5-18-2020",
+          "goal": "Social distancing",
+          "measure": "Bars and restaurants  reopening"
+        },
+        {
+          "startDate": "6-3-2020",
+          "endDate": "6-3-2020",
+          "goal": "Social distancing",
+          "measure": "Borders to EU countries opening"
         }
       ]
     },
@@ -26,10 +110,10 @@
       "color": "yellow",
       "measures": [
         {
-          "startDate": "31-12-2020",
-          "endDate": "02-01-2021",
-          "goal": "Less cars on the road",
-          "measure": "People need to be able to show where they are going"
+          "startDate": "2-21-2020",
+          "endDate": "12-31-2020",
+          "goal": "Quarantine",
+          "measure": "All people coming from China or other risk areas have to give notice to the officials and a 14 days fiduciary self-isolation applies"
         }
       ]
     },
@@ -37,12 +121,53 @@
       "color": "yellow",
       "measures": [
         {
-          "startDate": "31-12-2020",
-          "endDate": "02-01-2021",
+          "startDate": "12-31-2020",
+          "endDate": "12-31-2020",
           "goal": "Less cars on the road",
           "measure": "People need to be able to show where they are going"
         }
       ]
+    },
+    "lockdown": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "2-23-2020",
+          "endDate": "2-23-2020",
+          "goal": "Partial lockdown",
+          "measure": "State guidance: All regions at risk (specifically defined) are required to take measures that reduce the spread of the infection, up to full lock-down, including closure of non-essential production and travel restrictions"
+        },
+        {
+          "startDate": "3-8-2020",
+          "endDate": "3-8-2020",
+          "goal": "Partial lockdown",
+          "measure": "Northern Italian regions (NUTS2) officially locked down - General lockdown across component of everyday life; businesses can continue if they implement safety measures"
+        },
+        {
+          "startDate": "3-20-2020",
+          "endDate": "3-20-2020",
+          "goal": "Partial lockdown",
+          "measure": "Further restrictions on reasons to be outside"
+        },
+        {
+          "startDate": "3-23-2020",
+          "endDate": "4-13-2020",
+          "goal": "Full lockdown",
+          "measure": "All production will be closed and strictly only those services remain open that are essential (e.g. pharmacies, health facilities, banks, grocery stores, ...); later extended to 13th April"
+        },
+        {
+          "startDate": "4-11-2020",
+          "endDate": "5-3-2020",
+          "goal": "Full lockdown",
+          "measure": "Extension: of full lock-down until 3rd May"
+        },
+        {
+          "startDate": "5-4-2020",
+          "endDate": "5-4-2020",
+          "goal": "Full lockdown",
+          "measure": "With the phase-out of the full lockdown, a partial lockdown remains with only reasons to leave house being work, health, necessity or visit to relatives (this now includes sports and being outside also beyond the immediate neighbourhood)"
+        }
+      ]
     }
-  } 
+  }
 ]

@@ -1,0 +1,29 @@
+[
+  {
+    "movementRestrictions": {
+      "color": "yellow",
+      "measures": [
+      ]
+    },
+    "socialDistancing": {
+      "color": "yellow",
+      "measures": [
+      ]
+    },
+    "quarantineIsolation": {
+      "color": "yellow",
+      "measures": [
+      ]
+    },
+    "stayAtHomeOrders": {
+      "color": "yellow",
+      "measures": [
+      ]
+    },
+    "lockdown": {
+      "color": "yellow",
+      "measures": [
+      ]
+    }
+  }
+]

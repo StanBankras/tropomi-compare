@@ -21,13 +21,15 @@ const store = createStore({
         { countryCode: 'IS', city: 'Reykjavik' },
         { countryCode: 'LV', city: 'Riga' }
       ],
-      no2PerCountry: {}
+      no2PerCountry: {},
+      measuresPerCountry: {}
     }
   },
   getters: {
     coronaMeasures: state => state.coronaMeasures,
     measures: state => state.measures,
     measuresPerCountryCode: state => state.measuresPerCountryCode,
+    measuresPerCountry: state => state.measuresPerCountry,
     no2PerCountry: state => state.no2PerCountry,
     countries: state => {
       return state.countries.map(country => {
@@ -47,6 +49,9 @@ const store = createStore({
     },
     SET_COUNTRY_NO2(state, payload) {
       state.no2PerCountry[payload.countryCode] = payload.values;
+    },
+    SET_COUNTRY_MEASURES(state, payload) {
+      state.measuresPerCountry[payload.countryCode] = payload.values;
     }
   },
   actions: {
@@ -63,6 +68,15 @@ const store = createStore({
           .then(res => res.json())
           .then(data => {
             commit('SET_COUNTRY_NO2', { countryCode: country.countryCode, values: data })
+          });
+      });
+    },
+    getMeasures: ({ commit, state }) => {
+      state.countries.forEach(country => {
+        fetch(`./json/measures/${ country.city.toLowerCase().split(' ').join('-') }.json`)
+          .then(res => res.json())
+          .then(data => {
+            commit('SET_COUNTRY_MEASURES', { countryCode: country.countryCode, values: data })
           });
       });
     }

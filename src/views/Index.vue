@@ -1,11 +1,12 @@
 <template>
   <div id="content">
-    <div class="wrap">
+    <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
       <d3
         @week="week => selectedWeek = week"
-        @measures="m => measures[0] = m"
         @measure="m => measure = m"
-        @country="c => countries[0] = c"
+        @country="c => countryA = c"
+        :country="countryA"
+        :measures="measuresPerCountry[countryA]"
         :minMax="no2MinMax"
         :zoomMeasure="measure"
         :week="selectedWeek"
@@ -13,9 +14,10 @@
         :id="1"/>
       <d3
         @week="week => selectedWeek = week"
-        @measures="m => measures[1] = m"
         @measure="m => measure = m"
-        @country="c => countries[1] = c"
+        @country="c => countryB = c"
+        :country="countryB"
+        :measures="measuresPerCountry[countryB]"
         :minMax="no2MinMax"
         :zoomMeasure="measure"
         :week="selectedWeek"
@@ -41,6 +43,9 @@ export default {
   computed: {
     no2PerCountry() {
       return this.$store.getters.no2PerCountry;
+    },
+    measuresPerCountry() {
+      return this.$store.getters.measuresPerCountry || [];
     }
   },
   data() {
@@ -50,12 +55,15 @@ export default {
       measures: [0, 0],
       measure: undefined,
       no2MinMax: [0, 0],
-      countries: []
+      countryA: 'IT',
+      countryB: 'IT'
     }
   },
   mounted() {
     this.windowWidth = window.innerWidth;
     window.addEventListener('resize', () => this.onResize());
+    this.$store.dispatch('getNO2Data');
+    this.$store.dispatch('getMeasures');
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.onResize());
@@ -83,22 +91,25 @@ export default {
     },
     minMax(data) {
       return [Math.max(...data.map(d => d[1])), Math.min(...data.map(d => d[1]))];
+    },
+    updateData() {
+      const values = [this.countryA, this.countryB].map(c => this.no2Values(c));
+      if(!values) return;
+
+      let minMax = values.map(v => this.minMax(v));
+      minMax = [Math.max(minMax[0][0], minMax[1][0]), Math.min(minMax[0][1], minMax[1][1])];
+
+      if(!isFinite(minMax[0] || !isFinite(minMax[1]))) return;
+
+      this.no2MinMax = minMax;
     }
   },
   watch: {
-    countries: {
-      deep: true,
-      handler(arr) {
-        const values = arr.map(c => this.no2Values(c));
-        if(!values) return;
-
-        let minMax = values.map(v => this.minMax(v));
-        minMax = [Math.max(minMax[0][0], minMax[1][0]), Math.min(minMax[0][1], minMax[1][1])];
-
-        if(!isFinite(minMax[0] || !isFinite(minMax[1]))) return;
-
-        this.no2MinMax = minMax;
-      }
+    countryA() {
+      this.updateData();
+    },
+    countryB() {
+      this.updateData();
     }
   }
 }

@@ -99,8 +99,8 @@
 
     }
 	}
-	@media only screen and (max-width: 320px) {
-		  .sentinel {
+	@media only screen and (max-width: 600px) {
+	.sentinel {
     min-height: 100vh;
     display: flex;
     justify-content: center;
