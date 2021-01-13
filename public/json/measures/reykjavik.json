@@ -1,37 +1,61 @@
 [
-  {
-    "movementRestrictions": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-18-2020",
-          "endDate": "02-01-2021",
-          "goal": "Keep cases to a minimum from outside sources.",
-          "measure": "All travel outside of the country is discouraged, and residents abroad are asked to return ASAP to Iceland."
+    {
+        "movementRestrictions": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-18-2020",
+                    "endDate": "02-01-2021",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "All travel outside of the country is discouraged, and residents abroad are asked to return ASAP to Iceland."
+        },
+                {
+                    "startDate": "03-20-2020",
+                    "endDate": "06-30-2021",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "All travelers from outside of the EU, may not enter the country."
+        },
+           {
+                    "startDate": "06-30-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "Persons entering Iceland must pre-register by filling out an online form with their contact details,  where they have been, where they intend to stay in quarantine in Iceland and health information."
+        }     
+      ]
+        },
+        "socialDistancing": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "10-07-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "Social distance of 2 metres: People not closely related or connected are required to maintain a social distance of 2 metres. This also applies in all schools, though not to pupils born in or after 2005. school swimming lessons may go ahead and sports, and youth and leisure activities are permitted. Where it is not possible to ensure a social distance of 2 metres between persons who are not closely related or connected, the use of face-masks in shops is obligatory."
+        },
+                {
+                    "startDate": "10-07-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "Activities and services that call for physical contact, or involve the risk of contact between persons, or close physical proximity, are prohibited. This applies, for example, to hairdresser salons, beauty parlours, massage parlours, tattoo parlours and other comparable activities. Swimming pools and bathing establishments: Swimming pools and bathing establishments close. Indoor sports and physical fitness activities are prohibited.  Outdoor sporting activities are permitted, but spectators at outdoor sporting events must be divided into separate groups of not more than 20 persons. They must wear face-masks and sit in numbered seats. Restaurants that are permitted to open (NB bars and night-clubs are to be closed) may not remain open after 9 p.m. (21.00)."
+        },
+               {
+                    "startDate": "10-20-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To stop the virus from spreading",
+                    "measure": "After previous allowances, all sports and leisure activities for children of pre-school (kindergarten) age and junior-school age, including school swimming lessons, which involve physical contact, is prohibited."
+        } 
+      ]
+        },
+        "quarantineIsolation": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-01-2020",
+                    "endDate": "02-01-2021",
+                    "goal": "To stop the virus from spreading",
+                    "measure": "When having simptoms you are required to self isolate. Failing in doing so wil result in a fine."
         }
       ]
-    },
-    "socialDistancing": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-21-2020",
-          "endDate": "02-01-2021",
-          "goal": "To slow the spread of the virus",
-          "measure": "A 2 metre social distance is to be held. In places where you can not, and you haven't completed isolation, you must wear a facemask."
         }
-      ]
-    },
-    "quarantineIsolation": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-01-2020",
-          "endDate": "02-01-2021",
-          "goal": "To stop the virus from spreading",
-          "measure": "When having simptoms you are required to self isolate. Failing in doing so wil result in a fine."
-        }
-      ]
-    }
   }
 ]

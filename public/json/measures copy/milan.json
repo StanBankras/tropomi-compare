@@ -1,11 +1,11 @@
 [
   {
     "movementRestrictions": {
-      "color": "yellow",
+      "color": "red",
       "measures": [
         {
           "startDate": "1-31-2020",
-          "endDate": "1-31-2020",
+          "endDate": "12-31-2020",
           "goal": "Closing borders",
           "measure": "Limited flights to and from China"
         },
@@ -30,7 +30,7 @@
       ]
     },
     "socialDistancing": {
-      "color": "yellow",
+      "color": "pink",
       "measures": [
         {
           "startDate": "2-25-2020",
@@ -121,8 +121,8 @@
       "color": "yellow",
       "measures": [
         {
-          "startDate": "31-12-2020",
-          "endDate": "02-01-2021",
+          "startDate": "12-31-2020",
+          "endDate": "12-31-2020",
           "goal": "Less cars on the road",
           "measure": "People need to be able to show where they are going"
         }

@@ -5,13 +5,13 @@
       "measures": [
         {
           "startDate": "1-8-2020",
-          "endDate": "02-01-2020",
+          "endDate": "2-1-2020",
           "goal": "Movement Restriction",
           "measure": "Removal of restrictions on movement of individuals during night (Night curfew)"
         },
         {
-          "startDate": "2-3-2020",
-          "endDate": "2-3-2020",
+          "startDate": "3-2-2020",
+          "endDate": "3-2-2020",
           "goal": "Movement Restriction",
           "measure": "Indian citizens are advised to refrain from travel to COVID-19 affected Countries (China, Republic of Korea, Islamic Republic of Iran, Italy and Japan). For those planning a visit to India from these countries, Existing visas (including eVisa already issued) are no longer valid for any foreign national travelling from these countries. "
         },
@@ -57,28 +57,28 @@
       "color": "yellow",
       "measures": [
         {
-          "startDate": "3-5-2020",
-          "endDate": "3-5-2020",
-          "goal": "Limit public gatherings",
-          "measure": "Advisory against mass gatherings"
-        },
-        {
           "startDate": "3-7-2020",
           "endDate": "3-31-2020",
           "goal": "General recommendations",
           "measure": "Social distancing advisory until 31 March 2020, including closure of all education establishments, gyms, museums, cultural and social centres, swimming pools and theatres, offices, non-essential social and cultural gatherings, non-essential travel, and (2) physical distance ensured at restaurants, religious mass gatherings, transportation, and greetings. "
         },
         {
+          "startDate": "8-7-2020",
+          "endDate": "12-31-2020",
+          "goal": "Less cars on the road",
+          "measure": "Schools, colleges and coaching institutions to remain closed till August 31, 2020"
+        },
+        {
+          "startDate": "5-3-2020",
+          "endDate": "5-3-2020",
+          "goal": "LLimit public gatherings",
+          "measure": "Advisory against mass gatherings"
+        },
+        {
           "startDate": "5-11-2020",
           "endDate": "5-11-2020",
           "goal": "LLimit public gatherings",
           "measure": "Union Ministry of Home Affairs has issued detailed guidelines under the Disaster Management Act, 2005, on restarting manufacturing industries after the lockdown period."
-        },
-        {
-          "startDate": "8-7-2020",
-          "endDate": "8-31-2020",
-          "goal": "Less cars on the road",
-          "measure": "Schools, colleges and coaching institutions to remain closed till August 31, 2020"
         }
       ]
     },
@@ -86,8 +86,8 @@
       "color": "yellow",
       "measures": [
         {
-          "startDate": "3-10-2020",
-          "endDate": "3-10-2020",
+          "startDate": "10-3-2020",
+          "endDate": "10-3-2020",
           "goal": "Isolation",
           "measure": "all passengers having travel history to China, Hong Kong, Republic of Korea, Japan, Italy, Thailand, Singapore, Iran, Malaysia, France, Spain and Germany are advised to undergo self-imposed quarantine for a period of 14 days from the date of their arrival. "
         }
@@ -115,13 +115,13 @@
       "measures": [
         {
           "startDate": "3-16-2020",
-          "endDate": "3-31-2021",
+          "endDate": "12-31-2020",
           "goal": "Partial lockdown",
           "measure": "Closure of selected public institutions such as museums (incl. Taj Mahal) until March 31 and postponement of several local elections"
         },
         {
           "startDate": "3-25-2020",
-          "endDate": "4-14-2021",
+          "endDate": "12-31-2020",
           "goal": "Lockdown",
           "measure": "Complete lockdown of entire nation for 21 days. Agriculture-Farming and allied activities exempted from Lockdown (announced 3/28)"
         },
@@ -145,7 +145,7 @@
         },
         {
           "startDate": "6-19-2020",
-          "endDate": "6-30-2021",
+          "endDate": "12-31-2020",
           "goal": "Partial lockdown",
           "measure": "Total lockdown from 19th to 30th June in Chennai, Thiruvallur, Kanchipuram, and Chengalpattu districts"
         }

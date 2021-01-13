@@ -118,7 +118,7 @@
         },
         {
           "startDate": "4-11-2020",
-          "endDate": "4-11-2020",
+          "endDate": "5-6-2020",
           "goal": "School closure",
           "measure": "A second wave of infections hit Hokkaido, prompting the prefectural government to declare a second state of emergency that closed schools and that asked residents to avoid non-essential trips."
         },
@@ -127,6 +127,17 @@
           "endDate": "5-21-2020",
           "goal": "School closure",
           "measure": "On 21 May, the state of emergency is lifted in 3 prefectures in the Kinki region after they had cleared the threshold of having new infections below 0.5 per 100,000 people in the past week, resulting a total of 42 out of the 47 prefectures to be out of the state of emergency."
+        }
+      ]
+    },
+    "quarantineIsolation": {
+      "color": "yellow",
+      "measures": [
+        {
+          "startDate": "12-31-2020",
+          "endDate": "12-31-2020",
+          "goal": "Less cars on the road",
+          "measure": "People need to be able to show where they are going"
         }
       ]
     },

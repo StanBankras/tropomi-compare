@@ -1,65 +1,143 @@
 [
-  {
-    "movementRestrictions": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-13-2020",
-          "endDate": "12-31-2020",
-          "goal": "Keep cases to a minimum from outside sources.",
-          "measure": "A travel ban is placed on countries where the risk for virus transmission is high."
-        }
-      ]
-    },
-    "socialDistancing": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-15-2020",
-          "endDate": "12-31-2020",
-          "goal": "To slow the spread of the virus",
-          "measure": "People had to keep a 1 to 2 meter distance as to not infect other people with the corona virus."
-        }
-      ]
-    },
-    "quarantineIsolation": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-01-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the virus from spreading",
-          "measure": "When having simptoms you are required to self isolate."
-        }
-      ]
-    },
-    "stayAtHomeOrders": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-15-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the spread of the virus.",
-          "measure": "People were asked to work from home as much as possible."
-        }
-      ]
-    },
-    "lockdown": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-15-2020",
-          "endDate": "06-02-2020",
-          "goal": "To stop the spread of the virus",
-          "measure": "Schools are closed to prevent the virus from rapidly spreading."
+    {
+        "movementRestrictions": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "09-29-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "Keep cases to a minimum when people meet up in public spaces.",
+                    "measure": "Indoor spaces with a continuous flow of visitors such as historic buildings, libraries and museums must operate using a reservation system with timeslots. This does not apply to retail stores and markets."
         },
-        {
-          "startDate": "12-15-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the spread of the virus",
-          "measure": "Schools and shops that do not primarily sell food or medication are closed to prevent the virus from rapidly spreading."
+                {
+                    "startDate": "09-29-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "Keep cases to a minimum when people meet up in public spaces.",
+                    "measure": "Those in contact-based professions must ask their customers to provide them with contact details so they can be contacted for contact tracing from the GGD."
         }
       ]
-    }
+        },
+        "socialDistancing": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-12-2020",
+                    "endDate": "03-23-2021",
+                    "goal": "To stop people from meeting up in big crowds.",
+                    "measure": "A limit on public gatherings with over 100 people."
+        },
+                {
+                    "startDate": "03-15-2020",
+                    "endDate": "04-06-2021",
+                    "goal": "To stop people from meeting up in big crowds.",
+                    "measure": "All bars, café's, restaurants, sport clubs, sex clubs and coffee shops have to close. Take away/delivery is permitted. Public places like cinema's and museums have to close fully."
+        },
+                {
+                    "startDate": "03-16-2020",
+                    "endDate": "04-06-2021",
+                    "goal": "To stop the spread of the virus amongst children.",
+                    "measure": "Closure of schools and nurseries."
+        },
+                {
+                    "startDate": "03-23-2020",
+                    "endDate": "06-01-2021",
+                    "goal": "To stop the spread of the virus in small (familial) communities.",
+                    "measure": "A limit on inviting more than three people at home."
+        },
+                {
+                    "startDate": "04-06-2020",
+                    "endDate": "10-14-2021",
+                    "goal": "To have people dine out safely.",
+                    "measure": "Bars, café's and restaurants are allowed to open up for a maximum of 30 people (staff not included). Public places like cinema's and museums can open under specific restrictions as well."
+        },
+                {
+                    "startDate": "04-06-2020",
+                    "endDate": "06-02-2021",
+                    "goal": "To stop the spread of the virus amongst children.",
+                    "measure": "An extension of the school and nursery closure."
+        },
+                {
+                    "startDate": "09-29-2020",
+                    "endDate": "10-14-2021",
+                    "goal": "To stop people from meeting up in open establishments.",
+                    "measure": "Restaurants, Bars and Café's are no longer allowed to accept new customers after 9pm."
+        },
+                {
+                    "startDate": "10-14-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To stop people from meeting up after establishments close.",
+                    "measure": "No alcohol is allowed to be sold after 8pm."
+        },
+                {
+                    "startDate": "10-14-2020",
+                    "endDate": "11-04-2021",
+                    "goal": "To stop people from meeting up in big crowds.",
+                    "measure": "All bars, café's, restaurants, sport clubs, sex clubs and coffee shops have to close. Take away/delivery is permitted. Public places like cinema's and museums have to close fully."
+        },
+                {
+                    "startDate": "11-04-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To stop the spread of the virus in small (familial) communities.",
+                    "measure": "People are not allowed to invite more than two people inside their homes per day, that do not belong to their direct family (that they live with)."
+        },
+                {
+                    "startDate": "11-04-2020",
+                    "endDate": "11-19-2021",
+                    "goal": "To have recrenational fun safely.",
+                    "measure": "All venues that are normally open to public are now allowed to open up again with limitations. This includes museums, theatres, sex establishments, cinemas, amusement parks, zoos, swimming pools and libraries."
+        },
+                {
+                    "startDate": "11-19-2020",
+                    "endDate": "12-19-2021",
+                    "goal": "To stop the people from meeting up in big crowds.",
+                    "measure": "All venues that are normally open to public are now closed. This includes museums, theatres, sex establishments, cinemas, amusement parks, zoos, swimming pools and libraries."
+        },
+                {
+                    "startDate": "12-19-2020",
+                    "endDate": "12-31-2021",
+                    "goal": "To stop the spread of the virus as much as possible.",
+                    "measure": "Everything except for essential shops (pharmacies and supermarkets) are now closed."
+        }
+      ]
+        },
+        "quarantineIsolation": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-01-2020",
+                    "endDate": "02-01-2021",
+                    "goal": "To stop the virus from spreading",
+                    "measure": "When having simptoms you are required to self isolate."
+        }
+      ]
+        },
+        "stayAtHomeOrders": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-15-2020",
+                    "endDate": "02-01-2021",
+                    "goal": "To stop the spread of the virus.",
+                    "measure": "People were asked to work from home as much as possible."
+        }
+      ]
+        },
+        "lockdown": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "12-15-2020",
+                    "endDate": "02-09-2021",
+                    "goal": "To stop the spread of the virus",
+                    "measure": "Schools and shops that do not primarily sell food or medication are closed to prevent the virus from rapidly spreading."
+        },
+                {
+                    "startDate": "03-15-2020",
+                    "endDate": "06-02-2020",
+                    "goal": "To stop the spread of the virus",
+                    "measure": "Schools are closed to prevent the virus from rapidly spreading."
+        }
+      ]
+        }
   }
 ]

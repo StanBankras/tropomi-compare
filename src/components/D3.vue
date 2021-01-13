@@ -18,6 +18,7 @@
             :rx="barHeight / 2"
             :fill="barColor(bar.title)"
             style="cursor: pointer;"
+            opacity="0.3"
             v-for="barData in bar.fromTo" :key="barData"/>
         </g>
         <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
@@ -197,7 +198,7 @@ export default {
       return measures
         .map(m => [m.startDate === '12-31-2020' ? 53 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 53 : this.$date(m.endDate).week()])
         .map(d => d[0] > d[1] ? [d[1], d[0]] : d)
-        .map(d => [d[0], d[1] > 52 ? 52 : d[1]]);
+        .map(d => [d[0], d[1] > 52 ? 53 : d[1]]);
     },
     barWidth(barData) {
       if(!barData || !barData[1] || !barData[0]) return 0;

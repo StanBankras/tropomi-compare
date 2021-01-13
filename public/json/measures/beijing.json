@@ -1,54 +1,60 @@
 [
-  {
-    "movementRestrictions": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "3-28-2020",
-          "endDate": "2-1-2021",
-          "goal": "Keep cases to a minimum from outside sources.",
-          "measure": "A travel ban is placed on countries based on how well they have the virus under control."
+    {
+        "movementRestrictions": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-20-2020",
+                    "endDate": "03-21-2020",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "Beijing is directing some inbound flights from their capital airport to other airports."
         },
-        {
-          "startDate": "8-2-2020",
-          "endDate": "12-31-2020",
-          "goal": "Keep cases to a minimum within the country.",
-          "measure": "A proof of good health is needed in order to be allowed to go to work, into shops or dine in restaurants."
+                {
+                    "startDate": "03-21-2020",
+                    "endDate": "03-24-2020",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "Beijing is now diverting all flights to fight the virus."
+        },
+                {
+                    "startDate": "03-24-2020",
+                    "endDate": "03-29-2020",
+                    "goal": "Keep cases to a minimum from outside sources.",
+                    "measure": "Beijing is asking people who are flying into Beijing to fill in a health declaration form. Also the flights will be diverted to other cities."
         }
       ]
-    },
-    "socialDistancing": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "2-12-2020",
-          "endDate": "8-2-2021",
-          "goal": "To slow the spread of the virus",
-          "measure": "People had to keep a 1 to 2 meter distance as to not infect other people with the corona virus. Facemasks in public are mandatory."
+        },
+        "socialDistancing": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "02-12-2020",
+                    "endDate": "05-08-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "People had to keep a 1 to 2 meter distance as to not infect other people with the corona virus. Facemasks in public are mandatory."
         }
       ]
-    },
-    "quarantineIsolation": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "1-11-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the virus from spreading",
-          "measure": "When having simptoms you are required to self isolate."
+        },
+        "quarantineIsolation": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "04-01-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "Keep cases to a minimum from outside the city.",
+                    "measure": "Beijing city officials will now conduct a thorough examination of those who are now undergoing home quarantine."
         }
       ]
-    },
-    "stayAtHomeOrders": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "2-10-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the spread of the virus.",
-          "measure": "People were asked to work from home as much as possible."
+        },
+        "stayAtHomeOrders": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "01-29-2020",
+                    "endDate": "06-06-2020",
+                    "goal": "To stop the spread of the virus amongst children.",
+                    "measure": "All schools are closed."
         }
       ]
-    }
+        }
   }
 ]

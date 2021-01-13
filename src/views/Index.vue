@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <div class="labels">
-      <div class="label" v-for="label in labels" :key="label" :style="`color: ${barColor(label)}`">{{ label }}</div>
+      <div @click="measure = label" class="label" v-for="label in labels" :key="label" :style="`color: ${barColor(label)}`">{{ label }}</div>
     </div>
     <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
       <d3

@@ -1,59 +1,109 @@
 [
-  {
-    "movementRestrictions": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "11-05-2020",
-          "endDate": "12-31-2020",
-          "goal": "Keep cases to a minimum within the country.",
-          "measure": "Residents cannot travel within the UK unless for work, education or other legally permitted exemptions."
+    {
+        "movementRestrictions": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "11-05-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "Keep cases to a minimum within the country.",
+                    "measure": "Residents cannot travel within the UK unless for work, education or other legally permitted exemptions."
         }
       ]
-    },
-    "socialDistancing": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-16-2020",
-          "endDate": "12-31-2020",
-          "goal": "To slow the spread of the virus",
-          "measure": "People had to keep a 1 to 2 meter distance as to not infect other people with the corona virus."
+        },
+        "socialDistancing": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-16-2020",
+                    "endDate": "07-04-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "People had to keep a 2 meter distance as to not infect other people with the corona virus."
+        },
+          {
+                    "startDate": "03-21-2020",
+                    "endDate": "06-01-2020",
+                    "goal": "To slow the spread of the virus within public spaces.",
+                    "measure": "The following businesses are to remain closed until further notice: Public houses, Cinemas, Theatres, Nightclubs, Bingo halls, Concert halls, Museums and galleries, Casinos, Betting shops, Spas, Massage parlours, Indoor skating rinks, Indoor fitness studios, gyms, swimming pools or other indoor leisure centres."
+        },
+                {
+                    
+                    "startDate": "07-04-2020",
+                    "endDate": "09-14-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "People had to keep a 1 meter distance as to not infect other people with the corona virus."
+        },
+                {
+                    
+                    "startDate": "07-04-2020",
+                    "endDate": "09-14-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "Close proximity venues such as nightclubs, soft-play areas, indoor gyms, swimming pools and spas will need to remain closed for now, as will bowling alleys and water parks."
+        },
+                {
+                    "startDate": "09-14-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "People had to keep a 2 meter distance as to not infect other people with the corona virus."
+        },
+                {
+                    "startDate": "09-14-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To slow the spread of the virus within smaller communities",
+                    "measure": "You must not meet with people from other households socially in groups of more than 6. This will apply indoors and outdoors, including in private homes with the exception of workplaces, schools, COVID secure weddings and funerals, and organised team sports."
+        },
+                {
+                    "startDate": "09-14-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To slow the spread of the virus",
+                    "measure": "London moves from local COVID alert level: medium to local COVID alert level: high: people must not meet with anybody outside their household or support bubble in any indoor setting, whether at home or in a public place."
         }
       ]
-    },
-    "quarantineIsolation": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-01-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the virus from spreading",
-          "measure": "When having simptoms you are required to self isolate."
+        },
+        "quarantineIsolation": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "08-08-2020",
+                    "endDate": "11-14-2020",
+                    "goal": "To stop the virus from spreading from outside sources.",
+                    "measure": "Anyone arriving from outside of the UK must remain in a 14 day isolation."
+        },
+                 {
+                    "startDate": "11-14-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To stop the virus from spreading from outside sources.",
+                    "measure": "Anyone arriving from outside of the UK, and whose country is not on an alert list, must remain in a 5 day isolation. After this isolation they must do a Covid-19 test."
         }
       ]
-    },
-    "stayAtHomeOrders": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-11-2020",
-          "endDate": "12-31-2020",
-          "goal": "To stop the spread of the virus.",
-          "measure": "People were asked to work from home as much as possible."
+        },
+        "stayAtHomeOrders": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-11-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To stop the spread of the virus.",
+                    "measure": "People were asked to work from home as much as possible."
         }
       ]
-    },
-    "lockdown": {
-      "color": "yellow",
-      "measures": [
-        {
-          "startDate": "03-23-2020",
-          "endDate": "06-01-2020",
-          "goal": "To stop the spread of the virus",
-          "measure": "Schools and businesses are closed to prevent the virus from rapidly spreading."
+        },
+        "lockdown": {
+            "color": "yellow",
+            "measures": [
+                {
+                    "startDate": "03-24-2020",
+                    "endDate": "06-01-2020",
+                    "goal": "To stop the spread of the virus",
+                    "measure": "Schools and businesses are closed to prevent the virus from rapidly spreading. This is a lockdown."
+        },
+                {
+                    "startDate": "11-05-2020",
+                    "endDate": "12-31-2020",
+                    "goal": "To stop the spread of the virus",
+                    "measure": "Schools and businesses are closed to prevent the virus from rapidly spreading. This is a second lockdown, this time it's just England instead of the whole country."
         }
       ]
-    }
+        }
   }
 ]
