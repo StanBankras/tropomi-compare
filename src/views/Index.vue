@@ -72,7 +72,7 @@ export default {
       const countryA = this.measuresPerCountry[this.countryA];
       const countryB = this.measuresPerCountry[this.countryB];
 
-      return [...new Set([...Object.keys(countryA[0]), ...Object.keys(countryB[0])])];
+      return [...new Set([...Object.keys((countryA || [{}])[0]), ...Object.keys((countryB || [{}])[0])])];
     }
   },
   data() {
