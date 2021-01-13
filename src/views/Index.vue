@@ -1,5 +1,8 @@
 <template>
   <div id="content">
+    <div class="labels">
+      <div class="label" v-for="label in labels" :key="label" :style="`color: ${barColor(label)}`">{{ label }}</div>
+    </div>
     <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
       <d3
         @week="week => selectedWeek = week"
@@ -64,6 +67,12 @@ export default {
         return [mappedWeeks.sort((a, b) => a[0] - b[0])[0][0] - 1, mappedWeeks.sort((a, b) => b[1] - a[1])[0][1] + 1];
       }
       return [1,53];
+    },
+    labels() {
+      const countryA = this.measuresPerCountry[this.countryA];
+      const countryB = this.measuresPerCountry[this.countryB];
+
+      return [...new Set([...Object.keys(countryA[0]), ...Object.keys(countryB[0])])];
     }
   },
   data() {
@@ -120,6 +129,13 @@ export default {
       if(!isFinite(minMax[0] || !isFinite(minMax[1]))) return;
 
       this.no2MinMax = minMax;
+    },
+    barColor(title) {
+      if(title === 'movementRestrictions') return 'red';
+      if(title === 'socialDistancing') return 'green';
+      if(title === 'quarantineIsolation') return 'blue';
+      if(title === 'lockdown') return 'orange';
+      return 'yellow';
     }
   },
   watch: {
@@ -136,5 +152,11 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   display: flex;
+}
+.labels {
+  display: flex;
+  .label {
+    padding: 1rem;
+  }
 }
 </style>
