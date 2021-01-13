@@ -8,6 +8,7 @@
         :country="countryA"
         :measures="measuresPerCountry[countryA]"
         :minMax="no2MinMax"
+        :domain="zoomDomain"
         :zoomMeasure="measure"
         :week="selectedWeek"
         :width="windowWidth / 2"
@@ -19,7 +20,7 @@
         :country="countryB"
         :measures="measuresPerCountry[countryB]"
         :minMax="no2MinMax"
-        :zoomMeasure="measure"
+        :domain="zoomDomain"
         :week="selectedWeek"
         :width="windowWidth / 2"
         :id="2"/>
@@ -34,11 +35,11 @@
 import HeaderComp from '@/components/Header';
 import Explanation from '@/components/explanation/Index';
 import Compare from '@/components/compare/Index';
-// import D3 from '@/components/D3';
+import D3 from '@/components/D3';
 
 export default {
   components: {
-    Compare, HeaderComp, Explanation
+    Compare, HeaderComp, Explanation, D3
   },
   computed: {
     no2PerCountry() {
@@ -46,6 +47,20 @@ export default {
     },
     measuresPerCountry() {
       return this.$store.getters.measuresPerCountry || [];
+    },
+    zoomDomain() {
+      if(this.measure) {
+        const countryA = this.measuresPerCountry[this.countryA];
+        const countryB = this.measuresPerCountry[this.countryB];
+        const measures = [...countryA[0][this.measure].measures, ...countryB[0][this.measure].measures];
+        const mappedWeeks = measures
+          .map(m => [m.startDate === '12-31-2020' ? 52 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 52 : this.$date(m.endDate).week()])
+          .map(d => d[0] > d[1] ? [d[1], d[0]] : d)
+          .map(d => [d[0], d[1] > 52 ? 52 : d[1]]);
+          
+        return [mappedWeeks.sort((a, b) => a[0] - b[0])[0][0], mappedWeeks.sort((a, b) => b[1] - a[1])[0][1]];
+      }
+      return [1,53];
     }
   },
   data() {

@@ -16,7 +16,7 @@
             :height="barHeight"
             :width="barWidth(barData)"
             :rx="barHeight / 2"
-            :fill="bar.color"
+            :fill="barColor(bar.title)"
             style="cursor: pointer;"
             v-for="barData in bar.fromTo" :key="barData"/>
         </g>
@@ -92,7 +92,6 @@
         :key="countryCode"
         :class="{ active: country === countryCode }">{{ countryCode }}</button>
     </div>
-    {{ computedBars }}
   </div>
 </template>
 
@@ -100,7 +99,7 @@
 import { scaleLinear, line, curveCardinalOpen } from 'd3';
 
 export default {
-  props: ['week', 'width', 'id', 'zoomMeasure', 'minMax', 'measures', 'country'],
+  props: ['week', 'width', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
   emits: ['week', 'measure', 'country'],
   computed: {
     maxValue() {
@@ -116,11 +115,11 @@ export default {
     },
     xScale() {
       return scaleLinear()
-       .domain(this.fromTo)
+       .domain([1, 53])
        .range([0, this.chartWidth - this.xPadding * 3]);
     },
     yTicks() {
-      return this.yScale.ticks(20);
+      return this.yScale.ticks(8);
     },
     xTicks() {
       let ticks = 53;
@@ -159,11 +158,6 @@ export default {
     chartWidth() {
       return this.width - 50;
     },
-    fromTo() {
-      const bar = this.computedBars.find(b => b.title === this.zoomMeasure);
-      if(!bar) return [1, 53];
-      return [bar.fromTo[0][0], bar.fromTo[bar.fromTo.length -1][1]];
-    },
     computedBars() {
       if(!this.measures || !this.measures[0]) return [];
       const categories = Object.keys(this.measures[0]);
@@ -189,7 +183,6 @@ export default {
   methods: {
     clickBar(bar) {
       this.$emit('measure', bar.title);
-      console.log(bar);
     },
     resetZoom() {
       this.$emit('measure', undefined);
@@ -198,38 +191,10 @@ export default {
       this.$emit('week', tick)
     },
     calculateBars(measures) {
-      let dates = measures
-        .map(m => [this.getWeek(new Date(m.startDate)), this.getWeek(new Date(m.endDate))])
+      return measures
+        .map(m => [m.startDate === '12-31-2020' ? 52 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 52 : this.$date(m.endDate).week()])
         .map(d => d[0] > d[1] ? [d[1], d[0]] : d)
         .map(d => [d[0], d[1] > 52 ? 52 : d[1]]);
-
-      let bars = [];
-
-      if(dates.length > 1) {
-        let temp = [];
-
-        for(let i = 0;i < dates.length - 1; i++) {
-          if(temp.length === 0) {
-            temp.push(dates[i][0]);
-          }
-          if(dates[i + 1][0] > dates[i][1]) {
-            temp.push(dates[i][1]);
-            bars.push(temp);
-            temp = [];
-          }
-        }
-        return bars;
-      } else {
-        return dates ? [dates[0]] : [];
-      }
-    },
-    getWeek(date) {
-      // credits: https://stackoverflow.com/questions/9045868/javascript-date-getweek/28365677
-      if(date === '12-31-2020') return 52;
-      const onejan = new Date(date.getFullYear(),0,1);
-      const today = new Date(date.getFullYear(),date.getMonth(),date.getDate());
-      const dayOfYear = ((today - onejan + 86400000)/86400000);
-      return Math.ceil(dayOfYear/7);
     },
     barWidth(barData) {
       if(!barData || !barData[1] || !barData[0]) return 0;
@@ -243,6 +208,13 @@ export default {
           return this.xScale(barData[1]) - this.xScale(barData[0]);
         }
       }
+    },
+    barColor(title) {
+      if(title === 'movementRestrictions') return 'red';
+      if(title === 'socialDistancing') return 'green';
+      if(title === 'quarantineIsolation') return 'blue';
+      if(title === 'lockdown') return 'orange';
+      return 'yellow';
     }
   }
 }
