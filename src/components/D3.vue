@@ -14,14 +14,14 @@
             :x="(!barData || !barData[0] || !barData[1] ? 1 : xScale(barData[0] > barData[1] ? barData[1] : barData[0])) + 0.5 * xPadding"
             :y="chartHeight - xPadding * 2 - barHeight * (i + 1) - i * 5"
             :height="barHeight"
-            :width="barWidth(barData)"
+            :width="Math.max(barWidth(barData), xScale(15) - xScale(14))"
             :rx="barHeight / 2"
             :fill="barColor(bar.title)"
             style="cursor: pointer;"
             v-for="barData in bar.fromTo" :key="barData"/>
         </g>
         <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-          <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(chartData)"/>
+          <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
         </g>
       </g>
       <g transform="translate(0, 40)">
@@ -96,17 +96,17 @@
 </template>
 
 <script>
-import { scaleLinear, line, curveCardinalOpen } from 'd3';
+import { scaleLinear, line, curveBasis } from 'd3';
 
 export default {
   props: ['week', 'width', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
   emits: ['week', 'measure', 'country'],
   computed: {
     maxValue() {
-      return Math.max(...this.chartData.map(d => d[1]));
+      return Math.max(...this.slicedChartData.map(d => d[1]));
     },
     minValue() {
-      return Math.min(...this.chartData.map(d => d[1]));
+      return Math.min(...this.slicedChartData.map(d => d[1]));
     },
     yScale() {
       return scaleLinear()
@@ -115,22 +115,23 @@ export default {
     },
     xScale() {
       return scaleLinear()
-       .domain([1, 53])
-       .range([0, this.chartWidth - this.xPadding * 3]);
+       .domain(this.domain || [1, 53])
+       .range([0, this.chartWidth - this.xPadding * 3])
+       .clamp(true);
     },
     yTicks() {
       return this.yScale.ticks(8);
     },
     xTicks() {
-      let ticks = 53;
-      if(this.width < 840) ticks = 26
-      if(this.width < 510) ticks = 13
+      let ticks = this.domain ? this.domain[1] - this.domain[0] : 53;
+      if(this.width < 840) ticks = Math.ceil(ticks / 2)
+      if(this.width < 510) ticks = Math.ceil(ticks / 4)
 
       return this.xScale.ticks(ticks);
     },
     line() {
       return line()
-        .curve(curveCardinalOpen)
+        .curve(curveBasis)
         .x(d => this.xScale(d[0]))
         .y(d => this.yScale(d[1]));
     },
@@ -152,8 +153,10 @@ export default {
         const percentage = (b - a) / a * 100;
         no2.push([i + 1, isFinite(percentage) ? percentage : 0]);
       }
-
       return no2;
+    },
+    slicedChartData() {
+      return this.chartData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] : 53);
     },
     chartWidth() {
       return this.width - 50;
@@ -192,7 +195,7 @@ export default {
     },
     calculateBars(measures) {
       return measures
-        .map(m => [m.startDate === '12-31-2020' ? 52 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 52 : this.$date(m.endDate).week()])
+        .map(m => [m.startDate === '12-31-2020' ? 53 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 53 : this.$date(m.endDate).week()])
         .map(d => d[0] > d[1] ? [d[1], d[0]] : d)
         .map(d => [d[0], d[1] > 52 ? 52 : d[1]]);
     },
@@ -200,7 +203,7 @@ export default {
       if(!barData || !barData[1] || !barData[0]) return 0;
 
       if(barData[1] === barData[0]) {
-        return this.xScale(2) + this.xScale(1);
+        return this.xScale(2) - this.xScale(1);
       } else {
         if(barData[0] > barData[1]) {
           return this.xScale(barData[0]) - this.xScale(barData[1]);
