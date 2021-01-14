@@ -228,8 +228,7 @@ export default {
   .line {
     fill: none;
     stroke: black;
-    stroke-width: 2px;
-    stroke-width: 2px;
+    stroke-width: 2.5px;
     transition: .3s;
   }
   path, rect, line {
