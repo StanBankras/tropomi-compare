@@ -16,7 +16,7 @@
     </div>
     <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
       <div>
-        <button @click="countryA = undefined">Change city</button>
+        <button v-if="countryA" class="change-city" @click="countryA = undefined">Change city</button>
         <d3
           v-if="countryA"
           @week="week => selectedWeek = week"
@@ -30,10 +30,11 @@
           :week="selectedWeek"
           :width="windowWidth / 2 - 48"
           :id="1"/>
-        <country-selector @select="c => countryA = c" :countries="countries" v-else/>
+        <country-selector @select="c => countryA = c" :countries="countryB ? countries.filter(c => c.countryCode !== countryB) : countries" v-else/>
       </div>
+      <div class="border"></div>
       <div>
-        <button @click="countryB = undefined">Change city</button>
+        <button v-if="countryB" class="change-city" @click="countryB = undefined">Change city</button>
         <d3
           v-if="countryB"
           @week="week => selectedWeek = week"
@@ -46,7 +47,7 @@
           :week="selectedWeek"
           :width="windowWidth / 2 - 48"
           :id="2"/>
-        <country-selector @select="c => countryB = c" :countries="countries" v-else/>
+        <country-selector @select="c => countryB = c" :countries="countryA ? countries.filter(c => c.countryCode !== countryA) : countries" v-else/>
       </div>
     </div>
   </div>
@@ -170,23 +171,47 @@ export default {
 .wrap {
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 4rem;
   max-width: 1600px;
   width: calc(100% - 2rem);
   margin: 0 2rem;
   margin-bottom: 2rem;
   margin-bottom: 100vh;
+  .change-city {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--space-blue);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+      background-color: var(--space-blue-light);
+    }
+  }
+  .border {
+    height: 100%;
+    border-right: 4px dashed black;
+    @media(max-width: 1150px) {
+      display: none;
+    }
+  }
   @media(max-width: 1300px) {
     gap: 2rem;
   }
   @media(max-width: 1150px) {
     grid-template-columns: 1fr;
+    > div {
+      padding: 1rem 0 !important;
+    }
   }
-  div {
+  > div {
     max-width: 100%;
     overflow: auto;
     width: 100%;
+    padding: 4rem 0;
   }
 }
 .select {
@@ -196,7 +221,6 @@ export default {
   align-items: center;
   padding: 3rem;
   margin: 0 auto;
-  margin-bottom: 3rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;

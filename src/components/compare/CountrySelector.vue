@@ -25,12 +25,18 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
+    @media(max-width: 600px) {
+      grid-template-columns: 1fr 1fr;
+    }
     .country {
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
       padding: 2rem;
+      @media(max-width: 400px) {
+        padding: 1rem;
+      }
       &:hover {
         img {
           box-shadow: 0 5px 4px rgba(0, 0, 0, 0.4);
