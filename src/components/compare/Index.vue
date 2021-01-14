@@ -1,7 +1,18 @@
 <template>
   <div id="compare">
-    <div class="labels">
-      <div @click="measure = label" class="label" v-for="label in labels" :key="label" :style="`color: ${barColor(label)}`">{{ label }}</div>
+    <div class="select">
+      <h2>Choose a COVID-19 measure to zoom in to</h2>
+      <div class="labels">
+        <div
+          @click="measure === label ? measure = undefined : measure = label"
+          class="label"
+          :class="{ active: measure === label }"
+          v-for="label in labels"
+          :key="label">
+          <div class="circle" :style="`background-color: ${barColor(label)}`"></div>
+          <p>{{ label.replace(/([a-z])([A-Z])/g, '$1 $2') }}</p>
+        </div>
+      </div>
     </div>
     <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
       <d3
@@ -14,7 +25,7 @@
         :domain="zoomDomain"
         :zoomMeasure="measure"
         :week="selectedWeek"
-        :width="windowWidth / 2"
+        :width="windowWidth / 2 - 48"
         :id="1"/>
       <d3
         @week="week => selectedWeek = week"
@@ -25,7 +36,7 @@
         :minMax="no2MinMax"
         :domain="zoomDomain"
         :week="selectedWeek"
-        :width="windowWidth / 2"
+        :width="windowWidth / 2 - 48"
         :id="2"/>
     </div>
   </div>
@@ -81,18 +92,10 @@ export default {
     }
   },
   mounted() {
-    this.windowWidth = window.innerWidth;
-    window.addEventListener('resize', () => this.onResize());
     this.$store.dispatch('getNO2Data');
     this.$store.dispatch('getMeasures');
   },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.onResize());
-  },
   methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
     no2Values(country) {
       const data = this.no2PerCountry[country];
       if(!data) return [];
@@ -145,12 +148,62 @@ export default {
 
 <style lang="scss" scoped>
 .wrap {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  margin-bottom: 100vh;
+  @media(max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
-.labels {
+.select {
   display: flex;
-  .label {
-    padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .labels {
+    display: flex;
+    flex-wrap: wrap;
+    .label {
+      padding: 0.5rem 2rem;
+      background-color: var(--label-bg);
+      margin-right: 1rem;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      border: 2px solid transparent;
+      transition: .5s;
+      &.active {
+        border: 2px solid black;
+      }
+      p {
+        text-transform: capitalize;
+      }
+      .circle {
+        height: 16px;
+        width: 16px;
+        border-radius: 30px;
+        margin-right: 1rem;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }
 </style>

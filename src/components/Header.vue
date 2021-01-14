@@ -2,7 +2,7 @@
   <div class="header">
     <img src="@/assets/img/earth-stars.svg" alt="earth" />
     <div>
-      <h1>Lock down climate change</h1>
+      <h1>Lock down air pollution</h1>
       <p>
         How lockdown measures in Europe and Asia changed nitrogen dioxide
         emissions

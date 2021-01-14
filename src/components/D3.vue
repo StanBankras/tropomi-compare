@@ -1,6 +1,6 @@
 <template>
-  <div class="chart">
-    <svg v-if="chartData" :width="width" :height="chartHeight + 10">
+  <div ref="chart" class="chart" :id="`chart-${id}`">
+    <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
       <g clip-path="url(#chart)" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`">
         <rect
           @click.self="resetZoom"
@@ -43,7 +43,7 @@
         </g>
         <g class="x-axis" fill="none" :transform="`translate(${ yPadding * 0.5 + 20 }, 0)`">
           <g
-            v-for="tick in xTicks"
+            v-for="(tick, i) in xTicks"
             @mouseover="hoverChart(tick)"
             style="cursor: pointer;"
             :key="tick"
@@ -65,7 +65,7 @@
               :y2="chartHeight - yPadding * 2"/>
             <g>
               <rect v-if="week === tick" fill="#F2F2F2" x="-15" :y="chartHeight - 40" width="30px" height="30px"/>
-              <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ tick }}</text>
+              <text v-if="chartWidth > 800 || i % 2 === 0 || tick === week" opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ tick }}</text>
             </g>
             <g v-if="week === tick" transform="translate(0, 20)">
               <rect fill="black" x="-25" y="-15" width="50px" height="30px"/>
@@ -86,13 +86,6 @@
         </linearGradient>
       </defs>
     </svg>
-    <div class="countries">
-      <button
-        @click="$emit('country', countryCode)"
-        v-for="countryCode in Object.keys(no2PerCountry)"
-        :key="countryCode"
-        :class="{ active: country === countryCode }">{{ countryCode }}</button>
-    </div>
   </div>
 </template>
 
@@ -100,7 +93,7 @@
 import { scaleLinear, line, curveBasis } from 'd3';
 
 export default {
-  props: ['week', 'width', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
+  props: ['week', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
   emits: ['week', 'measure', 'country'],
   computed: {
     maxValue() {
@@ -125,8 +118,6 @@ export default {
     },
     xTicks() {
       let ticks = this.domain ? this.domain[1] - this.domain[0] : 53;
-      if(this.width < 840) ticks = Math.ceil(ticks / 2)
-      if(this.width < 510) ticks = Math.ceil(ticks / 4)
 
       return this.xScale.ticks(ticks);
     },
@@ -160,7 +151,7 @@ export default {
       return this.chartData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] : 53);
     },
     chartWidth() {
-      return this.width - 50;
+      return Math.max(this.width, 500);
     },
     computedBars() {
       if(!this.measures || !this.measures[0]) return [];
@@ -177,14 +168,25 @@ export default {
   },
   data() {
     return { 
-      chartHeight: 600,
+      chartHeight: 400,
       yPadding: 20,
       xPadding: 20,
-      multiplier: 0.85,
-      barHeight: 13
+      multiplier: 0.75,
+      barHeight: 13,
+      width: 400
     }
   },
+  mounted() {
+    this.width = this.$refs.chart.clientWidth - 32;
+    window.addEventListener('resize', () => this.onResize());
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.onResize());
+  },
   methods: {
+    onResize() {
+      this.width = document.querySelector(`#chart-${this.id}`).clientWidth - 32;
+    },
     clickBar(bar) {
       this.$emit('measure', bar.title);
     },
@@ -225,6 +227,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .chart {
+    background-color: var(--space-blue-light);
+    padding: 1rem;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 20px;
+  }
   .line {
     fill: none;
     stroke: black;
