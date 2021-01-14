@@ -34,7 +34,7 @@
       </div>
       <div class="border"></div>
       <div>
-        <button v-if="countryB" class="change-city" @click="countryB = undefined">Change city</button>
+        <button v-if="countryB" class="change-city right" @click="countryB = undefined">Change city</button>
         <d3
           v-if="countryB"
           @week="week => selectedWeek = week"
@@ -181,14 +181,17 @@ export default {
   .change-city {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
-    border: none;
-    background-color: var(--space-blue);
-    color: white;
+    border: 2px dashed transparent;
+    border-color: var(--space-blue);
+    background-color: transparent;
+    color: var(--space-blue);
     font-weight: bold;
     cursor: pointer;
+    width: 140px;
     transition: .3s;
     &:hover {
-      background-color: var(--space-blue-light);
+      border-color: var(--space-blue-light);
+      color: var(--space-blue-light);
     }
   }
   .border {
@@ -212,6 +215,11 @@ export default {
     overflow: auto;
     width: 100%;
     padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    .right {
+      align-self: flex-end;
+    }
   }
 }
 .select {
