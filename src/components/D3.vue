@@ -1,5 +1,9 @@
 <template>
   <div ref="chart" class="chart" :id="`chart-${id}`">
+    <div class="header">
+      <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
+      <h3>{{ fullCountry.city }}</h3>
+    </div>
     <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
       <g clip-path="url(#chart)" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`">
         <rect
@@ -96,6 +100,12 @@ export default {
   props: ['week', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
   emits: ['week', 'measure', 'country'],
   computed: {
+    countries() {
+      return this.$store.getters.countries;
+    },
+    fullCountry() {
+      return this.countries.find(c => c.countryCode === this.country);
+    },
     maxValue() {
       return Math.max(...this.slicedChartData.map(d => d[1]));
     },
@@ -227,6 +237,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .header {
+    display: flex;
+    align-items: center;
+    margin-left: 2.5rem;
+    img {
+      max-height: 25px;
+      margin-right: 1rem;
+    }
+  }
   .chart {
     background-color: var(--space-blue-light);
     padding: 1rem;

@@ -15,41 +15,55 @@
       </div>
     </div>
     <div v-if="Object.keys(measuresPerCountry).length > 0" class="wrap">
-      <d3
-        @week="week => selectedWeek = week"
-        @measure="m => measure = m"
-        @country="c => countryA = c"
-        :country="countryA"
-        :measures="measuresPerCountry[countryA]"
-        :minMax="no2MinMax"
-        :domain="zoomDomain"
-        :zoomMeasure="measure"
-        :week="selectedWeek"
-        :width="windowWidth / 2 - 48"
-        :id="1"/>
-      <d3
-        @week="week => selectedWeek = week"
-        @measure="m => measure = m"
-        @country="c => countryB = c"
-        :country="countryB"
-        :measures="measuresPerCountry[countryB]"
-        :minMax="no2MinMax"
-        :domain="zoomDomain"
-        :week="selectedWeek"
-        :width="windowWidth / 2 - 48"
-        :id="2"/>
+      <div>
+        <button @click="countryA = undefined">Change city</button>
+        <d3
+          v-if="countryA"
+          @week="week => selectedWeek = week"
+          @measure="m => measure = m"
+          @country="c => countryA = c"
+          :country="countryA"
+          :measures="measuresPerCountry[countryA]"
+          :minMax="no2MinMax"
+          :domain="zoomDomain"
+          :zoomMeasure="measure"
+          :week="selectedWeek"
+          :width="windowWidth / 2 - 48"
+          :id="1"/>
+        <country-selector @select="c => countryA = c" :countries="countries" v-else/>
+      </div>
+      <div>
+        <button @click="countryB = undefined">Change city</button>
+        <d3
+          v-if="countryB"
+          @week="week => selectedWeek = week"
+          @measure="m => measure = m"
+          @country="c => countryB = c"
+          :country="countryB"
+          :measures="measuresPerCountry[countryB]"
+          :minMax="no2MinMax"
+          :domain="zoomDomain"
+          :week="selectedWeek"
+          :width="windowWidth / 2 - 48"
+          :id="2"/>
+        <country-selector @select="c => countryB = c" :countries="countries" v-else/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import D3 from '@/components/D3';
+import CountrySelector from './CountrySelector';
 
 export default {
   components: {
-    D3
+    D3, CountrySelector
   },
   computed: {
+    countries() {
+      return this.$store.getters.countries;
+    },
     no2PerCountry() {
       return this.$store.getters.no2PerCountry;
     },
@@ -58,8 +72,8 @@ export default {
     },
     zoomDomain() {
       if(this.measure) {
-        const countryA = this.measuresPerCountry[this.countryA];
-        const countryB = this.measuresPerCountry[this.countryB];
+        const countryA = this.countryA ? this.measuresPerCountry[this.countryA] : [{}];
+        const countryB = this.countryB ? this.measuresPerCountry[this.countryB] : [{}];
         if(!countryA[0][this.measure]) countryA[0][this.measure] = { color: 'red', measures: [] };
         if(!countryB[0][this.measure]) countryB[0][this.measure] = { color: 'red', measures: [] };
 
@@ -147,17 +161,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#compare {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .wrap {
   display: grid;
+  justify-content: center;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   max-width: 1600px;
-  margin: 0 auto;
+  width: calc(100% - 2rem);
+  margin: 0 2rem;
   margin-bottom: 2rem;
   margin-bottom: 100vh;
-  @media(max-width: 767px) {
+  @media(max-width: 1300px) {
+    gap: 2rem;
+  }
+  @media(max-width: 1150px) {
     grid-template-columns: 1fr;
-    gap: 1rem;
+  }
+  div {
+    max-width: 100%;
+    overflow: auto;
+    width: 100%;
   }
 }
 .select {
@@ -171,6 +200,7 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
+  width: 100vw;
   h2 {
     margin-bottom: 2rem;
   }
@@ -188,6 +218,7 @@ export default {
       user-select: none;
       border: 2px solid transparent;
       transition: .5s;
+      margin-bottom: 1rem;
       &.active {
         border: 2px solid black;
       }
