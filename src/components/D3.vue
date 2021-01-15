@@ -27,7 +27,7 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path class="line" style="stroke: purple; opacity: 0.2" :d="line(flightData)"/>
+            <path class="line" style="stroke: purple; opacity: 0.4" :d="line(flightData)"/>
             <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
           </g>
         </g>
@@ -44,8 +44,9 @@
               :transform="`translate(${ xPadding }, ${ yScale(tick) - yPadding})`"
             >
               <line :opacity="tick === 0 ? 1 : 0.1" stroke="currentColor" :x2="chartWidth - xPadding * 2"></line>
-              <text opacity="0.7" fill="currentColor" x="-9" dy="0.32em">{{ tick }}</text>
+              <text opacity="0.7" fill="currentColor" x="-4" dy="0.32em">{{ tick }}</text>
             </g>
+            <text :x="-chartHeight / 2" y="-10" fill="currentColor" style="font-size: 11px;" transform="rotate(270)">NO2 change in % in 2020 vs 2019</text>
           </g>
           <g class="x-axis" fill="none" :transform="`translate(${ yPadding * 0.5 + 20 }, 0)`">
             <g
@@ -74,8 +75,14 @@
                 <text v-if="chartWidth > 800 || i % 2 === 0 || tick === week" opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ tick }}</text>
               </g>
               <g v-if="week === tick" transform="translate(0, 20)">
-                <rect fill="black" x="-25" y="-15" width="50px" height="30px"/>
-                <text color="white" fill="currentColor" dy="0.32em">{{ (chartData.find(x => x[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
+                <g>
+                  <rect :fill="chartData.find(x => x[0] === tick)[1] > 0 ? '#FF6363' : '#6BA1FF'" x="-25" y="-10" width="50px" height="20px"/>
+                  <text color="white" fill="currentColor" dy="0.32em">{{ (chartData.find(x => x[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
+                </g>
+                <g v-if="flightData.find(f => f[0] === tick)" transform="translate(0, 25)">
+                  <rect fill="purple" x="-25" y="-10" width="50px" height="20px"/>
+                  <text color="white" fill="currentColor" dy="0.32em">{{ (flightData.find(f => f[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
+                </g>
               </g>
             </g>
           </g>
