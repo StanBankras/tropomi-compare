@@ -84,11 +84,24 @@ h2{
 	max-width: 800px;
 }
 .orText{
-	margin: 2em 1em 0 1em;
+	margin: 1em 1em 1em 1em;
 	color: var(--text-box);
 	font-weight: 700;
 	font-size: 2em;
 }
 
+@media only screen and (max-width: 320px) {
+	.container > div {
+	padding: 1.75em 1em 1.75em 1em;
+}
 
+.textBox{
+	margin: 3em 1em 0 1em;
+	background-color: var(--text-box);
+	color: var(--text-contrast);
+	border-radius: 15px;
+	width: 100%;
+	max-width: 800px;
+}
+}
 </style>
