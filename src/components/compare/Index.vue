@@ -136,18 +136,18 @@ export default {
       if(!values) return;
 
       let minMax = values.map(v => this.minMax(v));
-      minMax = [Math.max(minMax[0][0], minMax[1][0]), Math.min(minMax[0][1], minMax[1][1])];
+      minMax = [Math.max(minMax[0][0], minMax[1][0]), -100];
 
       if(!isFinite(minMax[0] || !isFinite(minMax[1]))) return;
 
       this.no2MinMax = minMax;
     },
     barColor(title) {
-      if(title === 'movementRestrictions') return 'red';
-      if(title === 'socialDistancing') return 'green';
-      if(title === 'quarantineIsolation') return 'blue';
-      if(title === 'lockdown') return 'orange';
-      return 'yellow';
+      if(title === 'movementRestrictions') return '#978BF7';
+      if(title === 'socialDistancing') return '#009B72';
+      if(title === 'quarantineIsolation') return '#F26430';
+      if(title === 'lockdown') return '#2A2D34';
+      return '#5BD0FF';
     }
   },
   watch: {
@@ -228,7 +228,7 @@ export default {
   align-items: center;
   padding: 3rem;
   margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   width: 100vw;
