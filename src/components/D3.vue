@@ -94,10 +94,12 @@
     </div>
     <div class="measures">
       <div
-        class="measure"
-        :style="`color: ${barColor(measure.category)}`"
-        v-for="measure in activeMeasures" :key="measure.measure">
-        {{ measure.measure }}
+        class="category"
+        :style="`border-color: ${barColor(category.category)}`"
+        v-for="category in activeMeasures" :key="category.id">
+        <div class="measure" v-for="measure in category.measures" :key="measure.measure">
+          {{ measure.measure }}
+        </div>
       </div>
     </div>
   </div>
@@ -186,16 +188,16 @@ export default {
       return mapped;
     },
     activeMeasures() {
-      return this.computedBars
-        .filter(b => b.fromTo.find(f => this.week >= f.weeks[0] && this.week <= f.weeks[1]))
-        .map(b => b.fromTo)
-        .flat()
-        .map(b => {
-          return {
-            category: b.category,
-            measure: b.measure
-          }
-        });
+      let mapped = this.computedBars;
+      mapped = mapped.map((m, i) => {
+        return {
+          category: m.title,
+          measures: m.fromTo.filter(f => this.week >= f.weeks[0] && this.week <= f.weeks[1]),
+          id: i
+        }
+      }).filter(m => m.measures.length > 0);
+
+      return mapped;
     }
   },
   data() {
@@ -291,6 +293,7 @@ export default {
     width: 100%;
     overflow-x: auto;
     border-radius: 20px;
+    margin-bottom: 2rem;
   }
   .line {
     fill: none;
@@ -323,6 +326,23 @@ export default {
   line {
     &.active {
       opacity: 0.4;
+    }
+  }
+  .measures {
+    .category {
+      padding: 0.5rem 1.5rem;
+      border-left: 10px solid var(--text-box);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      .measure {
+        margin-bottom: 1rem;
+        font-size: 14px;
+        color: rgb(139, 139, 139);
+        line-height: 1.2rem;
+        &:last-child {
+          margin: 0;
+        }
+      }
     }
   }
 </style>

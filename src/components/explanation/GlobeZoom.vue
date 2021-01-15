@@ -14,20 +14,20 @@
       <img class="satellite" src="@/assets/img/satellite.svg" alt="satellite" />
       <img class="arrow" src="@/assets/img/yellow-arrow.svg" alt="arrow" />
 			<div class="textbox1">
-				<h2>Why measure NO2?</h2>
+				<h2>Why measure NO<sub>2</sub>?</h2>
 				<p>
-        NO2 is a gas with a short life span of only a couple of
+        NO<sub>2</sub> is a gas with a short life span of only a couple of
         hours, this makes it easy to monitor the source of the pollution. Every
-        time fossil fuels are burned, NO2 will be emitted into the air. This way
+        time fossil fuels are burned, NO<sub>2</sub> will be emitted into the air. This way
         it's easy to monitor where the most emissions are and what the possible
         causes can be.
       </p>
 			</div>
 
       <div class="textbox2">
-        <h2>Where does NO2 reside?</h2>
+        <h2>Where does NO<sub>2</sub> reside?</h2>
         <p>
-          NO2 resides in both the troposphere and the stratosphere, we will only
+          NO<sub>2</sub> resides in both the troposphere and the stratosphere, we will only
           be monitoring the troposphere. In the troposphere the changes are
           mostly the result of human activities.
         </p>
@@ -38,7 +38,7 @@
         <p>
           Comparing cities in times of Covid-19. Because of Covid-19, a lot of
           normal human activities have been suspended. This suspension had a lot
-          of impact on the NO2 emissions.
+          of impact on the NO<sub>2</sub> emissions.
         </p>
       </div>
 
