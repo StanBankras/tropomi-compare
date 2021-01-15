@@ -22,7 +22,8 @@ const store = createStore({
         { countryCode: 'LV', city: 'Riga' }
       ],
       no2PerCountry: {},
-      measuresPerCountry: {}
+      measuresPerCountry: {},
+      flightDataPerCountry: {}
     }
   },
   getters: {
@@ -31,6 +32,7 @@ const store = createStore({
     measuresPerCountryCode: state => state.measuresPerCountryCode,
     measuresPerCountry: state => state.measuresPerCountry,
     no2PerCountry: state => state.no2PerCountry,
+    flightDataPerCountry: state => state.flightDataPerCountry,
     countries: state => {
       return state.countries.map(country => {
         const details = lookup.byIso(country.countryCode);
@@ -52,6 +54,9 @@ const store = createStore({
     },
     SET_COUNTRY_MEASURES(state, payload) {
       state.measuresPerCountry[payload.countryCode] = payload.values;
+    },
+    SET_FLIGHT_DATA(state, payload) {
+      state.flightDataPerCountry = payload;
     }
   },
   actions: {
@@ -69,6 +74,30 @@ const store = createStore({
           .then(data => {
             commit('SET_COUNTRY_NO2', { countryCode: country.countryCode, values: data })
           });
+      });
+    },
+    getFlightData: ({ commit }) => {
+      fetch(`./json/flightData.json`)
+      .then(res => res.json())
+      .then(data => {
+        const obj = {};
+
+        data.forEach(d => {
+          let result = [];
+
+          for(let i = 0; i < d.data.length - 1; i++) {
+            let val = 5;
+            if(i === 0 || i === 11) val = 6;
+
+            for(let j = 0; j < val; j++) {
+              result.push(d.data[i]);
+            }
+          }
+
+          obj[d.countryCode] = result;
+        });
+
+        commit('SET_FLIGHT_DATA', obj);
       });
     },
     getMeasures: ({ commit, state }) => {
