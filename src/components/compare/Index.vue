@@ -195,7 +195,7 @@ export default {
   }
   .border {
     height: 100%;
-    border-right: 4px dashed black;
+    border-right: 4px dashed rgb(221, 221, 221);
     @media(max-width: 1150px) {
       display: none;
     }
