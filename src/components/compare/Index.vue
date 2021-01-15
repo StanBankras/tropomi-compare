@@ -136,7 +136,7 @@ export default {
       if(!values) return;
 
       let minMax = values.map(v => this.minMax(v));
-      minMax = [Math.max(minMax[0][0], minMax[1][0]), Math.min(minMax[0][1], minMax[1][1])];
+      minMax = [Math.max(minMax[0][0], minMax[1][0]), -100];
 
       if(!isFinite(minMax[0] || !isFinite(minMax[1]))) return;
 
@@ -228,7 +228,7 @@ export default {
   align-items: center;
   padding: 3rem;
   margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   width: 100vw;

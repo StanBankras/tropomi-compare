@@ -27,7 +27,7 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path class="line" style="stroke: purple; opacity: 0.4" :d="line(flightData)"/>
+            <path class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
             <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
           </g>
         </g>
@@ -50,7 +50,27 @@
           </g>
           <g class="x-axis" fill="none" :transform="`translate(${ yPadding * 0.5 + 20 }, 0)`">
             <g
-              v-for="(tick, i) in xTicks"
+              v-for="(month, i) in months"
+              :key="month"
+              class="tick"
+              opacity="1"
+              font-size="10"
+              font-family="sans-serif"
+              text-anchor="middle"
+              :transform="`translate(${ xMonths(i + 1) + xPadding * 1 }, ${ - xPadding })`"
+            >
+              <line
+                opacity="0.03"
+                stroke="currentColor"
+                stroke-width="2"
+                x1="0"
+                x2="0"
+                y1="0"
+                :y2="chartHeight - yPadding * 2"/>
+              <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ month }}</text>
+            </g>
+            <g
+              v-for="tick in xTicks"
               @mouseover="hoverChart(tick)"
               style="cursor: pointer;"
               :key="tick"
@@ -62,17 +82,18 @@
               :transform="`translate(${ xScale(tick) + xPadding * 1 }, ${ - xPadding })`"
             >
               <line
-                opacity="0.03"
+                opacity="0"
+                class="vertical"
                 :class="{ active: week === tick }"
                 stroke="currentColor"
-                stroke-width="2"
+                :stroke-width="week === tick ? 1 : 6"
                 x1="0"
                 x2="0"
                 y1="0"
                 :y2="chartHeight - yPadding * 2"/>
-              <g>
-                <rect v-if="week === tick" fill="#F2F2F2" x="-15" :y="chartHeight - 40" width="30px" height="30px"/>
-                <text v-if="chartWidth > 800 || i % 2 === 0 || tick === week" opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">{{ tick }}</text>
+              <g v-if="week === tick">
+                <rect fill="#F2F2F2" x="-25" :y="chartHeight - 40" width="50px" height="30px"/>
+                <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">Week {{ tick }}</text>
               </g>
               <g v-if="week === tick" transform="translate(0, 20)">
                 <g>
@@ -93,7 +114,7 @@
               :width="chartWidth - yPadding * 2"
               :height="chartHeight - xPadding * 2"/>
           </clipPath>
-          <linearGradient :id="`svgGradient-${id}`" x1="0%" x2="0%" :y1="`${ maxValue / (maxValue + Math.abs(minValue)) * 100 }%`" y2="100%">
+          <linearGradient :id="`svgGradient-${id}`" x1="0%" x2="0%" :y1="`${ maxValue / (maxValue + 100) * 100 }%`" y2="100%">
             <stop class="start" offset="0%" stop-color="#FF6363" stop-opacity="1"/>
             <stop class="end" offset="0%" stop-color="#6BA1FF" stop-opacity="1"/>
           </linearGradient>
@@ -131,17 +152,20 @@ export default {
     maxValue() {
       return Math.max(...this.slicedChartData.map(d => d[1]));
     },
-    minValue() {
-      return Math.min(...this.slicedChartData.map(d => d[1]));
-    },
     yScale() {
       return scaleLinear()
        .range([0, this.chartHeight * this.multiplier - this.yPadding * 2])
-       .domain([this.minMax[0] ? this.minMax[0] : this.maxValue, this.minMax[0] ? this.minMax[1] : this.minValue]);
+       .domain([this.minMax[0] ? this.minMax[0] : this.maxValue, this.minMax[0] ? this.minMax[1] : -100]);
     },
     xScale() {
       return scaleLinear()
        .domain(this.domain || [1, 53])
+       .range([0, this.chartWidth - this.xPadding * 3])
+       .clamp(true);
+    },
+    xMonths() {
+      return scaleLinear()
+       .domain([1, 12])
        .range([0, this.chartWidth - this.xPadding * 3])
        .clamp(true);
     },
@@ -182,6 +206,9 @@ export default {
     slicedChartData() {
       return this.chartData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] : 53);
     },
+    slicedFlightData() {
+      return this.flightData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] + 1 : 53);
+    },
     chartWidth() {
       return Math.max(this.width, 500);
     },
@@ -218,7 +245,8 @@ export default {
       xPadding: 20,
       multiplier: 0.75,
       barHeight: 13,
-      width: 400
+      width: 400,
+      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
   mounted() {
@@ -234,7 +262,6 @@ export default {
     },
     clickBar(bar) {
       this.$emit('measure', bar.title);
-      console.log(bar);
     },
     resetZoom() {
       this.$emit('measure', undefined);
@@ -310,7 +337,6 @@ export default {
     fill: none;
     stroke: black;
     stroke-width: 2.5px;
-    transition: .3s;
   }
   path, rect, line {
     transition: .3s ease-in-out;
@@ -337,6 +363,9 @@ export default {
   line {
     &.active {
       opacity: 0.4;
+    }
+    &.vertical {
+      transition: 0s !important;
     }
   }
   .measures {
