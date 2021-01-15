@@ -172,8 +172,7 @@ export default {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1px 1fr;
-  gap: 4rem;
-  max-width: 1600px;
+  gap: 2rem;
   width: calc(100% - 2rem);
   margin: 0 2rem;
   margin-bottom: 2rem;

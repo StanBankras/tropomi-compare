@@ -46,7 +46,7 @@
               <line :opacity="tick === 0 ? 1 : 0.1" stroke="currentColor" :x2="chartWidth - xPadding * 2"></line>
               <text opacity="0.7" fill="currentColor" x="-4" dy="0.32em">{{ tick }}</text>
             </g>
-            <text :x="-chartHeight / 2" y="-10" fill="currentColor" style="font-size: 11px;" transform="rotate(270)">NO2 change in % in 2020 vs 2019</text>
+            <text :x="-chartHeight / 2" y="-10" fill="currentColor" style="font-size: 11px;" transform="rotate(270)">Change in % in 2020 vs 2019</text>
           </g>
           <g class="x-axis" fill="none" :transform="`translate(${ yPadding * 0.5 + 20 }, 0)`">
             <g
