@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="country && chartData.length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
         <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
@@ -147,7 +147,7 @@ export default {
       return this.$store.getters.countries;
     },
     fullCountry() {
-      return this.countries.find(c => c.countryCode === this.country);
+      return this.countries.find(c => c && c.countryCode === this.country) || { countryCode: 'NL' };
     },
     maxValue() {
       return Math.max(...this.slicedChartData.map(d => d[1]));
@@ -309,7 +309,7 @@ export default {
       if(title === 'socialDistancing') return '#009B72';
       if(title === 'quarantineIsolation') return '#F26430';
       if(title === 'lockdown') return '#2A2D34';
-      return '#5BD0FF';
+      return '#41C6FC';
     }
   }
 }
