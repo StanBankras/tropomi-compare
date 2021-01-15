@@ -23,7 +23,7 @@
               :rx="barHeight / 2"
               :fill="barColor(bar.title)"
               style="cursor: pointer;"
-              opacity="0.3"
+              opacity="0.4"
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
@@ -305,11 +305,11 @@ export default {
       }
     },
     barColor(title) {
-      if(title === 'movementRestrictions') return 'red';
-      if(title === 'socialDistancing') return 'green';
-      if(title === 'quarantineIsolation') return 'blue';
-      if(title === 'lockdown') return 'orange';
-      return 'yellow';
+      if(title === 'movementRestrictions') return '#978BF7';
+      if(title === 'socialDistancing') return '#009B72';
+      if(title === 'quarantineIsolation') return '#F26430';
+      if(title === 'lockdown') return '#2A2D34';
+      return '#5BD0FF';
     }
   }
 }

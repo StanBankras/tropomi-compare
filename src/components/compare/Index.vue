@@ -143,11 +143,11 @@ export default {
       this.no2MinMax = minMax;
     },
     barColor(title) {
-      if(title === 'movementRestrictions') return 'red';
-      if(title === 'socialDistancing') return 'green';
-      if(title === 'quarantineIsolation') return 'blue';
-      if(title === 'lockdown') return 'orange';
-      return 'yellow';
+      if(title === 'movementRestrictions') return '#978BF7';
+      if(title === 'socialDistancing') return '#009B72';
+      if(title === 'quarantineIsolation') return '#F26430';
+      if(title === 'lockdown') return '#2A2D34';
+      return '#5BD0FF';
     }
   },
   watch: {
