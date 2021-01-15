@@ -27,6 +27,7 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
+            <path class="line" style="stroke: purple; opacity: 0.2" :d="line(flightData)"/>
             <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
           </g>
         </g>
@@ -97,9 +98,11 @@
         class="category"
         :style="`border-color: ${barColor(category.category)}`"
         v-for="category in activeMeasures" :key="category.id">
-        <div class="measure" v-for="measure in category.measures" :key="measure.measure">
-          {{ measure.measure }}
-        </div>
+        <transition-group name="fade">
+          <div class="measure" v-for="measure in category.measures" :key="measure.measure">
+            {{ measure.measure }}
+          </div>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -188,16 +191,17 @@ export default {
       return mapped;
     },
     activeMeasures() {
-      let mapped = this.computedBars;
-      mapped = mapped.map((m, i) => {
+      return this.computedBars.map((m, i) => {
         return {
           category: m.title,
           measures: m.fromTo.filter(f => this.week >= f.weeks[0] && this.week <= f.weeks[1]),
           id: i
         }
       }).filter(m => m.measures.length > 0);
-
-      return mapped;
+    },
+    flightData() {
+      const data = this.$store.getters.flightDataPerCountry[this.country] || [];
+      return data.map((d, i) => [i, d]);
     }
   },
   data() {
