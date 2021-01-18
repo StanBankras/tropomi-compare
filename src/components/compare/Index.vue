@@ -58,7 +58,6 @@
         <country-selector @select="c => countryB = c" :countries="countryA ? countries.filter(c => c.countryCode !== countryA) : countries" v-else/>
       </div>
     </div>
-    {{ labels }}
   </div>
 </template>
 

@@ -9,15 +9,15 @@
         <div class="labels">
           <div @click="editLabel('no2')" :class="{ inactive: !labels.includes('no2') }" class="label">
             <img src="@/assets/img/no2_label.svg" alt="">
-            <p>NO2 Emission difference</p>
+            <p>NO2 Emission difference *</p>
           </div>
           <div @click="editLabel('flights')" :class="{ inactive: !labels.includes('flights') }" class="label">
             <img src="@/assets/img/flights_label.svg" alt="">
-            <p>Amount of flights difference</p>
+            <p>Amount of flights difference *</p>
           </div>
           <div @click="editLabel('traffic')" :class="{ inactive: !labels.includes('traffic') }" class="label">
             <img src="@/assets/img/traffic_label.svg" alt="">
-            <p>Road congestion difference</p>
+            <p>Road congestion difference *</p>
           </div>
         </div>
       </div>
@@ -167,6 +167,7 @@
         </transition-group>
       </div>
     </div>
+    <p class="note">* Difference is 2020 data vs 2019 data in percentages</p>
   </div>
 </template>
 
@@ -470,5 +471,9 @@ export default {
   .extremes {
     position: relative;
     z-index: 1000;
+  }
+  .note {
+    margin-top: 2rem;
+    font-size: 11px;
   }
 </style>
