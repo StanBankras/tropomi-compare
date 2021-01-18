@@ -7,15 +7,15 @@
           <h3>{{ fullCountry.city }}</h3>
         </div>
         <div class="labels">
-          <div @click="hideNo2 = !hideNo2" :class="{ inactive: hideNo2 }" class="label">
+          <div @click="editLabel('no2')" :class="{ inactive: !labels.includes('no2') }" class="label">
             <img src="@/assets/img/no2_label.svg" alt="">
             <p>NO2 Emission difference</p>
           </div>
-          <div @click="hideFlights = !hideFlights" :class="{ inactive: hideFlights }" class="label">
+          <div @click="editLabel('flights')" :class="{ inactive: !labels.includes('flights') }" class="label">
             <img src="@/assets/img/flights_label.svg" alt="">
             <p>Amount of flights difference</p>
           </div>
-          <div @click="hideTraffic = !hideTraffic" :class="{ inactive: hideTraffic }" class="label">
+          <div @click="editLabel('traffic')" :class="{ inactive: !labels.includes('traffic') }" class="label">
             <img src="@/assets/img/traffic_label.svg" alt="">
             <p>Road congestion difference</p>
           </div>
@@ -43,9 +43,9 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path v-if="!hideFlights" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
-            <path v-if="!hideNo2" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
-            <path v-if="!hideTraffic" class="line" style="stroke: green; opacity: 0.4" :d="line(slicedTrafficData)"/>
+            <path v-if="labels.includes('flights')" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
+            <path v-if="labels.includes('no2')" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
+            <path v-if="labels.includes('traffic')" class="line" style="stroke: green; opacity: 0.4" :d="line(slicedTrafficData)"/>
             <g
               class="extremes"
               v-for="extreme in extremeValues"
@@ -167,6 +167,7 @@
         </transition-group>
       </div>
     </div>
+    {{ labels }}
   </div>
 </template>
 
@@ -174,8 +175,8 @@
 import { scaleLinear, line, curveBasis } from 'd3';
 
 export default {
-  props: ['week', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain'],
-  emits: ['week', 'measure', 'country'],
+  props: ['week', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain', 'labels'],
+  emits: ['week', 'measure', 'country', 'addlabel', 'removelabel'],
   computed: {
     countries() {
       return this.$store.getters.countries;
@@ -293,9 +294,6 @@ export default {
       multiplier: 0.75,
       barHeight: 13,
       width: 400,
-      hideNo2: false,
-      hideFlights: false,
-      hideTraffic: false,
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
@@ -360,6 +358,9 @@ export default {
       if(title === 'quarantineIsolation') return '#F26430';
       if(title === 'lockdown') return '#2A2D34';
       return '#41C6FC';
+    },
+    editLabel(label) {
+      this.labels.includes(label) ? this.$emit('removelabel', label) : this.$emit('addlabel', label);
     }
   }
 }

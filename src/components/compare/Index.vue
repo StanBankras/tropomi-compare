@@ -24,6 +24,8 @@
           @week="week => selectedWeek = week"
           @measure="m => measure = m"
           @country="c => countryA = c"
+          @removelabel="l => removeLabel(l)"
+          @addlabel="l => addLabel(l)"
           :labels="activeLabels"
           :country="countryA"
           :measures="measuresPerCountry[countryA]"
@@ -43,6 +45,9 @@
           @week="week => selectedWeek = week"
           @measure="m => measure = m"
           @country="c => countryB = c"
+          @removelabel="l => removeLabel(l)"
+          @addlabel="l => addLabel(l)"
+          :labels="activeLabels"
           :country="countryB"
           :measures="measuresPerCountry[countryB]"
           :minMax="no2MinMax"
@@ -53,6 +58,7 @@
         <country-selector @select="c => countryB = c" :countries="countryA ? countries.filter(c => c.countryCode !== countryA) : countries" v-else/>
       </div>
     </div>
+    {{ labels }}
   </div>
 </template>
 
@@ -160,6 +166,14 @@ export default {
     executeParameters() {
       if(this.$route.query.a) this.countryA = this.$route.query.a;
       if(this.$route.query.b) this.countryB = this.$route.query.b;
+    },
+    removeLabel(label) {
+      this.activeLabels = this.activeLabels.filter(l => l !== label);
+    },
+    addLabel(label) {
+      const labels = this.activeLabels;
+      labels.push(label);
+      this.activeLabels = labels;
     }
   },
   watch: {
