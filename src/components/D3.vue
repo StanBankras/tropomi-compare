@@ -2,7 +2,7 @@
   <div v-if="country && chartData.length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
-        <div>
+        <div style="display: flex; align-items: center">
           <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
           <h3>{{ fullCountry.city }}</h3>
         </div>
