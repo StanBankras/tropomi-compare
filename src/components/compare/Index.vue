@@ -7,9 +7,11 @@
           @click="measure === label ? measure = undefined : measure = label"
           class="label"
           :class="{ active: measure === label }"
+					:style="{backgroundColor: measure === label ? barColor (label) : 'white',
+					borderColor: barColor(label)}"
           v-for="label in labels"
           :key="label">
-          <div class="circle" :style="`background-color: ${barColor(label)}`"></div>
+
           <p>{{ label.replace(/([a-z])([A-Z])/g, '$1 $2') }}</p>
         </div>
       </div>
@@ -83,7 +85,7 @@ export default {
           .map(m => [m.startDate === '12-31-2020' ? 53 : this.$date(m.startDate).week(), m.endDate === '12-31-2020' ? 53 : this.$date(m.endDate).week()])
           .map(d => d[0] > d[1] ? [d[1], d[0]] : d)
           .map(d => [d[0], d[1] > 52 ? 52 : d[1]]);
-          
+
         return [mappedWeeks.sort((a, b) => a[0] - b[0])[0][0], mappedWeeks.sort((a, b) => b[1] - a[1])[0][1] + 1];
       }
       return [1,53];
@@ -234,6 +236,7 @@ export default {
   width: 100vw;
   h2 {
     margin-bottom: 2rem;
+		color: var(--text-box);
   }
   .labels {
     display: flex;
@@ -247,14 +250,17 @@ export default {
       align-items: center;
       cursor: pointer;
       user-select: none;
-      border: 2px solid transparent;
+      border: 3px solid transparent;
       transition: .5s;
       margin-bottom: 1rem;
-      &.active {
-        border: 2px solid black;
-      }
+			&.active{
+				color:white;
+			}
+
       p {
         text-transform: capitalize;
+				font-weight: 600;
+
       }
       .circle {
         height: 16px;
