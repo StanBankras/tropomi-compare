@@ -213,7 +213,8 @@ export default {
   .change-city {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
-    border: 2px dashed transparent;
+		border: 2px dashed transparent;
+		border-radius: 30px;
     border-color: var(--space-blue);
     background-color: transparent;
     color: var(--space-blue);
@@ -266,8 +267,10 @@ export default {
   top: 0;
   width: 100vw;
   h2 {
+		font-size: 1.25em;
     margin-bottom: 2rem;
 		color: var(--text-box);
+		font-weight: 600;
   }
   .labels {
     display: flex;
@@ -291,7 +294,7 @@ export default {
       p {
         text-transform: capitalize;
 				font-weight: 600;
-
+				font-size: 1em;
       }
       .circle {
         height: 16px;

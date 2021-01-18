@@ -291,7 +291,7 @@ export default {
     }
   },
   data() {
-    return { 
+    return {
       chartHeight: 400,
       yPadding: 20,
       xPadding: 20,
@@ -462,8 +462,8 @@ export default {
       margin-bottom: 1rem;
       .measure {
         margin-bottom: 1rem;
-        font-size: 14px;
-        color: rgb(139, 139, 139);
+        font-size: 1em;
+        color: var(--text-box);
         line-height: 1.2rem;
         max-width: 40rem;
         &:last-child {
@@ -478,6 +478,16 @@ export default {
   }
   .note {
     margin-top: 2rem;
-    font-size: 11px;
-  }
+		font-size: 0.75em;
+		color: var(--text-box)
+	}
+	h3{
+		font-size: 1.15em;
+		color: var(--text-box);
+	}
+	p{
+		color: var(--text-box);
+		font-size: 1em;
+		line-height: 1.2em;
+	}
 </style>

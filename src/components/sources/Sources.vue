@@ -32,6 +32,7 @@
 		</p>
 		<p>NARITA INTERNATIONAL AIRPORT CORPORATION. (2020b). NARITA AIRPORT TRAFFIC STATISTICS -2020(JAN-DEC). https://www.naa.jp/en/airport/pdf/statistics20201224.pdf</p>
 		<p>Riga Airport. (2020). STATISTICS REPORT 2020. https://www.riga-airport.com/uploads/statistika/9_RIX_Statistics%202020_Okt.pdf</p>
+		<p>TomTom. (n.d.). TomTom | Home. Retrieved January 18, 2021, from https://www.tomtom.com/nl_nl/</p>
 		</div>
 
 	</div>
@@ -68,7 +69,7 @@ p{
 }
 
 .sourceSize{
-	margin: 5em 5em 5em 5em;
+	margin: 5em 15em 5em 15em;
 }
 
 @media only screen and (max-width: 320px) {
@@ -79,7 +80,7 @@ h2{
 }
 
 .sourceSize{
-margin: 2em 1em 1em 1em;
+margin: 2em 1em 1em 2em;
 }
 
 h3{
