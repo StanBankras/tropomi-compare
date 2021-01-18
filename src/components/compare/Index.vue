@@ -26,6 +26,7 @@
           @country="c => countryA = c"
           @removelabel="l => removeLabel(l)"
           @addlabel="l => addLabel(l)"
+          @download="$emit('download')"
           :labels="activeLabels"
           :country="countryA"
           :measures="measuresPerCountry[countryA]"
@@ -47,6 +48,7 @@
           @country="c => countryB = c"
           @removelabel="l => removeLabel(l)"
           @addlabel="l => addLabel(l)"
+          @download="$emit('download')"
           :labels="activeLabels"
           :country="countryB"
           :measures="measuresPerCountry[countryB]"
@@ -209,7 +211,6 @@ export default {
   width: calc(100% - 2rem);
   margin: 0 2rem;
   margin-bottom: 2rem;
-  margin-bottom: 100vh;
   .change-city {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;

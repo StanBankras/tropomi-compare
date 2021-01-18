@@ -2,9 +2,15 @@
   <div v-if="country && chartData.length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
-        <div style="display: flex; align-items: center">
-          <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
-          <h3>{{ fullCountry.city }}</h3>
+        <div class="name">
+          <div style="display: flex; align-items: center">
+            <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
+            <h3 style="white-space: nowrap">{{ fullCountry.city }}</h3>
+          </div>
+          <div @click="$emit('download')" class="share">
+            <img src="@/assets/img/share.svg"/>
+            <p>Share image</p>  
+          </div>          
         </div>
         <div class="labels">
           <div @click="editLabel('no2')" :class="{ inactive: !labels.includes('no2') }" class="label">
@@ -377,6 +383,30 @@ export default {
     align-items: flex-start;
     margin-left: 2.5rem;
     justify-content: space-between;
+    .name {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .share {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1.5rem;
+        background-color: var(--space-blue);
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover {
+          background-color: var(--space-blue-opacity);
+        }
+        img {
+          width: 15px;
+        }
+        p {
+          font-size: 12px;
+          font-weight: bold;
+          color: white;
+        }
+      }
+    }
     .labels {
       display: flex;
       align-items: center;
