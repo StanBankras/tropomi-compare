@@ -209,7 +209,6 @@ export default {
   width: calc(100% - 2rem);
   margin: 0 2rem;
   margin-bottom: 2rem;
-  margin-bottom: 100vh;
   .change-city {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
