@@ -105,12 +105,13 @@ export default {
       measure: undefined,
       no2MinMax: [0, 0],
       countryA: 'IT',
-      countryB: 'IT'
+      countryB: 'CN'
     }
   },
   mounted() {
     this.$store.dispatch('getNO2Data');
     this.$store.dispatch('getMeasures');
+    this.executeParameters();
   },
   methods: {
     no2Values(country) {
@@ -149,15 +150,30 @@ export default {
       if(title === 'socialDistancing') return '#009B72';
       if(title === 'quarantineIsolation') return '#F26430';
       if(title === 'lockdown') return '#2A2D34';
-      return '#5BD0FF';
+      return '#41C6FC';
+    },
+    updateQueries() {
+      this.$router.push(`/?${this.countryA ? `a=${this.countryA}` : ''}${this.countryB ? `&b=${this.countryB}` : ''}`);
+    },
+    executeParameters() {
+      if(this.$route.query.a) this.countryA = this.$route.query.a;
+      if(this.$route.query.b) this.countryB = this.$route.query.b;
     }
   },
   watch: {
     countryA() {
       this.updateData();
+      this.updateQueries();
     },
     countryB() {
       this.updateData();
+      this.updateQueries();
+    },
+    measure() {
+      this.updateQueries();
+    },
+    labels() {
+      this.updateQueries();
     }
   }
 }

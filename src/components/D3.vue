@@ -1,9 +1,21 @@
 <template>
-  <div>
+  <div v-if="country && chartData.length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
-        <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
-        <h3>{{ fullCountry.city }}</h3>
+        <div>
+          <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
+          <h3>{{ fullCountry.city }}</h3>
+        </div>
+        <div class="labels">
+          <div @click="hideNo2 = !hideNo2" :class="{ inactive: hideNo2 }" class="label">
+            <img src="@/assets/img/no2_label.svg" alt="">
+            <p>NO2 Emission difference (2019-2020) in %</p>
+          </div>
+          <div @click="hideFlights = !hideFlights" :class="{ inactive: hideFlights }" class="label">
+            <img src="@/assets/img/flights_label.svg" alt="">
+            <p>Amount of flights difference (2019-2020) in %</p>
+          </div>
+        </div>
       </div>
       <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
         <g clip-path="url(#chart)" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`">
@@ -27,8 +39,8 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
-            <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
+            <path v-if="!hideFlights" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
+            <path v-if="!hideNo2" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
           </g>
         </g>
         <g transform="translate(0, 40)">
@@ -147,7 +159,7 @@ export default {
       return this.$store.getters.countries;
     },
     fullCountry() {
-      return this.countries.find(c => c.countryCode === this.country);
+      return this.countries.find(c => c && c.countryCode === this.country) || { countryCode: 'NL' };
     },
     maxValue() {
       return Math.max(...this.slicedChartData.map(d => d[1]));
@@ -246,11 +258,13 @@ export default {
       multiplier: 0.75,
       barHeight: 13,
       width: 400,
+      hideNo2: false,
+      hideFlights: false,
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
   mounted() {
-    this.width = this.$refs.chart.clientWidth - 32;
+    this.width = (this.$refs.chart || { clientWidth: 400 }).clientWidth - 32;
     window.addEventListener('resize', () => this.onResize());
   },
   beforeUnmount() {
@@ -309,7 +323,7 @@ export default {
       if(title === 'socialDistancing') return '#009B72';
       if(title === 'quarantineIsolation') return '#F26430';
       if(title === 'lockdown') return '#2A2D34';
-      return '#5BD0FF';
+      return '#41C6FC';
     }
   }
 }
@@ -320,6 +334,28 @@ export default {
     display: flex;
     align-items: center;
     margin-left: 2.5rem;
+    justify-content: space-between;
+    .labels {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      .label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+        cursor: pointer;
+        user-select: none;
+        &.inactive {
+          text-decoration: line-through;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
     img {
       max-height: 25px;
       margin-right: 1rem;
@@ -379,6 +415,7 @@ export default {
         font-size: 14px;
         color: rgb(139, 139, 139);
         line-height: 1.2rem;
+        max-width: 40rem;
         &:last-child {
           margin: 0;
         }

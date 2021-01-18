@@ -3,7 +3,7 @@
     <h1>Before you make use of our comparison tool...</h1>
     <p class="introText">
       Let us introduce you to the mechanics of it or
-      <a href="#compare"> go straight to the charts </a>
+      <a @click.prevent="$emit('scrollTo', '#compare')" href="#compare"> go straight to the charts </a>
     </p>
 
 		<div class="textBox">
