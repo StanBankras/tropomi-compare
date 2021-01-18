@@ -23,7 +23,9 @@ const store = createStore({
       ],
       no2PerCountry: {},
       measuresPerCountry: {},
-      flightDataPerCountry: {}
+      flightDataPerCountry: {},
+      trafficDataPerCountry: {},
+      extremes: []
     }
   },
   getters: {
@@ -33,6 +35,8 @@ const store = createStore({
     measuresPerCountry: state => state.measuresPerCountry,
     no2PerCountry: state => state.no2PerCountry,
     flightDataPerCountry: state => state.flightDataPerCountry,
+    trafficDataPerCountry: state => state.trafficDataPerCountry,
+    extremes: state => state.extremes,
     countries: state => {
       return state.countries.map(country => {
         const details = lookup.byIso(country.countryCode);
@@ -57,6 +61,12 @@ const store = createStore({
     },
     SET_FLIGHT_DATA(state, payload) {
       state.flightDataPerCountry = payload;
+    },
+    SET_TRAFFIC_DATA(state, payload) {
+      state.trafficDataPerCountry = payload;
+    },
+    SET_EXTREMES(state, payload) {
+      state.extremes = payload;
     }
   },
   actions: {
@@ -65,6 +75,13 @@ const store = createStore({
         .then(res => res.json())
         .then(res => {
           commit('SET_COVID_MEASURES', res);
+        });
+    },
+    setExtremes: ({ commit }) => {
+      fetch('./json/extremes.json')
+        .then(res => res.json())
+        .then(res => {
+          commit('SET_EXTREMES', res);
         });
     },
     getNO2Data: ({ commit, state }) => {
@@ -98,6 +115,30 @@ const store = createStore({
         });
 
         commit('SET_FLIGHT_DATA', obj);
+      });
+    },
+    getTrafficData: ({ commit }) => {
+      fetch(`./json/trafficData.json`)
+      .then(res => res.json())
+      .then(data => {
+        const obj = {};
+
+        data.forEach(d => {
+          let result = [];
+
+          for(let i = 0; i < d.data.length - 1; i++) {
+            let val = 5;
+            if(i === 0 || i === 11) val = 6;
+
+            for(let j = 0; j < val; j++) {
+              result.push(d.data[i]);
+            }
+          }
+
+          obj[d.countryCode] = result;
+        });
+
+        commit('SET_TRAFFIC_DATA', obj);
       });
     },
     getMeasures: ({ commit, state }) => {

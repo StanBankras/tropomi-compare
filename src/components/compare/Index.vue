@@ -24,6 +24,7 @@
           @week="week => selectedWeek = week"
           @measure="m => measure = m"
           @country="c => countryA = c"
+          :labels="activeLabels"
           :country="countryA"
           :measures="measuresPerCountry[countryA]"
           :minMax="no2MinMax"
@@ -105,7 +106,8 @@ export default {
       measure: undefined,
       no2MinMax: [0, 0],
       countryA: 'IT',
-      countryB: 'CN'
+      countryB: 'CN',
+      activeLabels: ['no2', 'flights', 'traffic']
     }
   },
   mounted() {

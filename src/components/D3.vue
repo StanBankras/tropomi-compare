@@ -9,11 +9,15 @@
         <div class="labels">
           <div @click="hideNo2 = !hideNo2" :class="{ inactive: hideNo2 }" class="label">
             <img src="@/assets/img/no2_label.svg" alt="">
-            <p>NO2 Emission difference (2019-2020) in %</p>
+            <p>NO2 Emission difference</p>
           </div>
           <div @click="hideFlights = !hideFlights" :class="{ inactive: hideFlights }" class="label">
             <img src="@/assets/img/flights_label.svg" alt="">
-            <p>Amount of flights difference (2019-2020) in %</p>
+            <p>Amount of flights difference</p>
+          </div>
+          <div @click="hideTraffic = !hideTraffic" :class="{ inactive: hideTraffic }" class="label">
+            <img src="@/assets/img/traffic_label.svg" alt="">
+            <p>Road congestion difference</p>
           </div>
         </div>
       </div>
@@ -41,6 +45,24 @@
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
             <path v-if="!hideFlights" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
             <path v-if="!hideNo2" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
+            <path v-if="!hideTraffic" class="line" style="stroke: green; opacity: 0.4" :d="line(slicedTrafficData)"/>
+            <g
+              class="extremes"
+              v-for="extreme in extremeValues"
+              :key="extreme.week">
+              <path
+                v-if="extreme.week >= domain[0] && extreme.week <= domain[1]"
+                d="M11.433,3l2.606,5.279,5.827.852L15.65,13.238l1,5.8L11.433,16.3,6.221,19.04l1-5.8L3,9.131l5.827-.852Z"
+                fill="#7a7a7a"
+                stroke="#7a7a7a"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+                style="cursor: pointer;"
+                :transform="`translate(${xScale(extreme.week) - 8}, ${Number(line([chartData.find(c => c[0] === extreme.week - 1), chartData.find(c => c[0] === extreme.week), chartData.find(c => c[0] === extreme.week + 1)]).split(',')[8]) - 4})`">
+                <title>{{ extreme.text }}</title>
+              </path>
+            </g>
           </g>
         </g>
         <g transform="translate(0, 40)">
@@ -103,16 +125,16 @@
                 x2="0"
                 y1="0"
                 :y2="chartHeight - yPadding * 2"/>
-              <g v-if="week === tick">
+              <g style="pointer-events: none;" v-if="week === tick">
                 <rect fill="#F2F2F2" x="-25" :y="chartHeight - 40" width="50px" height="30px"/>
                 <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">Week {{ tick }}</text>
               </g>
               <g v-if="week === tick" transform="translate(0, 20)">
-                <g>
+                <g style="pointer-events: none;">
                   <rect :fill="chartData.find(x => x[0] === tick)[1] > 0 ? '#FF6363' : '#6BA1FF'" x="-25" y="-10" width="50px" height="20px"/>
                   <text color="white" fill="currentColor" dy="0.32em">{{ (chartData.find(x => x[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
                 </g>
-                <g v-if="flightData.find(f => f[0] === tick)" transform="translate(0, 25)">
+                <g style="pointer-events: none;" v-if="flightData.find(f => f[0] === tick)" transform="translate(0, 25)">
                   <rect fill="purple" x="-25" y="-10" width="50px" height="20px"/>
                   <text color="white" fill="currentColor" dy="0.32em">{{ (flightData.find(f => f[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
                 </g>
@@ -157,6 +179,16 @@ export default {
   computed: {
     countries() {
       return this.$store.getters.countries;
+    },
+    extremes() {
+      return this.$store.getters.extremes;
+    },
+    extremeValues() {
+      return this.extremes[0][this.country];
+    },
+    trafficData() {
+      const data =  this.$store.getters.trafficDataPerCountry[this.country] || [];
+      return data.map((d, i) => [i, d]);
     },
     fullCountry() {
       return this.countries.find(c => c && c.countryCode === this.country) || { countryCode: 'NL' };
@@ -221,6 +253,9 @@ export default {
     slicedFlightData() {
       return this.flightData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] + 1 : 53);
     },
+    slicedTrafficData() {
+      return this.trafficData.slice(this.domain ? this.domain[0] - 1 : 1, this.domain ? this.domain[1] + 1 : 53);
+    },
     chartWidth() {
       return Math.max(this.width, 500);
     },
@@ -260,6 +295,7 @@ export default {
       width: 400,
       hideNo2: false,
       hideFlights: false,
+      hideTraffic: false,
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
@@ -332,24 +368,33 @@ export default {
 <style lang="scss" scoped>
   .header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     margin-left: 2.5rem;
     justify-content: space-between;
     .labels {
       display: flex;
-      align-items: flex-start;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 2rem;
+      @media(max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+        .label {
+          margin-bottom: 1rem;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
       .label {
         display: flex;
         align-items: center;
-        margin-bottom: 0.8rem;
         cursor: pointer;
         user-select: none;
         &.inactive {
           text-decoration: line-through;
-        }
-        &:last-child {
-          margin-bottom: 0;
         }
         p {
           font-size: 12px;
@@ -421,5 +466,9 @@ export default {
         }
       }
     }
+  }
+  .extremes {
+    position: relative;
+    z-index: 1000;
   }
 </style>
