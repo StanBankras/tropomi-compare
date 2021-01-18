@@ -264,7 +264,7 @@ export default {
     }
   },
   mounted() {
-    this.width = this.$refs.chart.clientWidth - 32;
+    this.width = (this.$refs.chart || { clientWidth: 400 }).clientWidth - 32;
     window.addEventListener('resize', () => this.onResize());
   },
   beforeUnmount() {
@@ -415,6 +415,7 @@ export default {
         font-size: 14px;
         color: rgb(139, 139, 139);
         line-height: 1.2rem;
+        max-width: 40rem;
         &:last-child {
           margin: 0;
         }

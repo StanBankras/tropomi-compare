@@ -2,8 +2,10 @@
   <div id="content">
     <header-comp/>
     <explanation/>
-		<tutorial/>
-    <compare/>
+    <tutorial @scrollTo="scroll"/>
+    <div id="tool">
+      <compare/>
+    </div>
   </div>
 </template>
 
@@ -16,6 +18,11 @@ import Tutorial from '@/components/explanation/Tutorial';
 export default {
   components: {
     Compare, HeaderComp, Explanation, Tutorial
+  },
+  methods: {
+    scroll() {
+      document.querySelector('#tool').scrollIntoView({ behavior: "smooth" });
+    }
   }
 }
 </script>

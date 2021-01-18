@@ -151,12 +151,11 @@ export default {
       return '#41C6FC';
     },
     updateQueries() {
-      this.$router.push(`/?${this.countryA ? `a=${this.countryA}` : ''}${this.countryB ? `&b=${this.countryB}` : ''}${this.measure ? '&measure=' + this.measure.toLowerCase() : ''}`)
+      this.$router.push(`/?${this.countryA ? `a=${this.countryA}` : ''}${this.countryB ? `&b=${this.countryB}` : ''}`);
     },
     executeParameters() {
       if(this.$route.query.a) this.countryA = this.$route.query.a;
       if(this.$route.query.b) this.countryB = this.$route.query.b;
-      if(this.$route.query.measure) this.measure = this.labels.find(l => l.toLowerCase().join() === this.$route.query.measure);
     }
   },
   watch: {
