@@ -167,7 +167,6 @@
         </transition-group>
       </div>
     </div>
-    {{ labels }}
   </div>
 </template>
 
