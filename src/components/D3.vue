@@ -43,9 +43,9 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path v-if="labels.includes('flights')" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
+            <path v-if="labels.includes('flights')" class="line" style="stroke: black; opacity: 0.3" :d="line(slicedFlightData)"/>
+            <path v-if="labels.includes('traffic')" class="line" style="stroke: pink; opacity: 1" :d="line(slicedTrafficData)"/>
             <path v-if="labels.includes('no2')" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
-            <path v-if="labels.includes('traffic')" class="line" style="stroke: green; opacity: 0.4" :d="line(slicedTrafficData)"/>
             <g
               class="extremes"
               v-for="extreme in extremeValues"
@@ -130,13 +130,17 @@
                 <text opacity="0.7" fill="currentColor" dy="0.32em" :y="chartHeight - 25">Week {{ tick }}</text>
               </g>
               <g v-if="week === tick" transform="translate(0, 20)">
-                <g style="pointer-events: none;">
+                <g v-if="labels.includes('no2')" style="pointer-events: none;">
                   <rect :fill="chartData.find(x => x[0] === tick)[1] > 0 ? '#FF6363' : '#6BA1FF'" x="-25" y="-10" width="50px" height="20px"/>
                   <text color="white" fill="currentColor" dy="0.32em">{{ (chartData.find(x => x[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
                 </g>
-                <g style="pointer-events: none;" v-if="flightData.find(f => f[0] === tick)" transform="translate(0, 25)">
-                  <rect fill="purple" x="-25" y="-10" width="50px" height="20px"/>
+                <g style="pointer-events: none;" v-if="flightData.find(f => f[0] === tick) && labels.includes('flights')" transform="translate(0, 25)">
+                  <rect fill="black" x="-25" y="-10" width="50px" height="20px"/>
                   <text color="white" fill="currentColor" dy="0.32em">{{ (flightData.find(f => f[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
+                </g>
+                <g style="pointer-events: none;" v-if="trafficData.find(f => f[0] === tick) && labels.includes('traffic')" transform="translate(0, 50)">
+                  <rect fill="pink" x="-25" y="-10" width="50px" height="20px"/>
+                  <text color="white" fill="currentColor" dy="0.32em">{{ (trafficData.find(f => f[0] === tick) || [0,0])[1].toFixed(2) }}%</text>
                 </g>
               </g>
             </g>
@@ -291,8 +295,8 @@ export default {
       chartHeight: 400,
       yPadding: 20,
       xPadding: 20,
-      multiplier: 0.75,
-      barHeight: 13,
+      multiplier: 0.78,
+      barHeight: 12,
       width: 400,
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }

@@ -259,7 +259,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  padding: 2rem;
   margin: 0 auto;
   box-shadow: 0 10px 5px rgba(0, 0, 0, 0.05);
   position: sticky;
