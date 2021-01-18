@@ -18,7 +18,6 @@ const store = createStore({
         { countryCode: 'IT', city: 'Milan' },
         { countryCode: 'GB', city: 'London' },
         { countryCode: 'JP', city: 'Tokyo' },
-        { countryCode: 'IS', city: 'Reykjavik' },
         { countryCode: 'LV', city: 'Riga' }
       ],
       no2PerCountry: {},
