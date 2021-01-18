@@ -59,6 +59,7 @@ img{
 	max-width: 1600px;
 }
 h1{
+	color: var(--text-box);
 	margin-top: 3em;
 	text-align: center;
 }
@@ -71,9 +72,13 @@ h1{
 }
 p{
 	line-height: 1.2em;
+	font-size: 1em;
+	font-weight: 400;
 }
 h2{
 	margin-bottom: 0.1em;
+	font-size: 1.25em;
+	font-weight: 600;
 }
 .textBox{
 	margin: 6em 1em 0 1em;

@@ -85,7 +85,8 @@
   .altitude {
     align-self: center;
     margin-top: 1rem;
-    font-size: 1.5em;
+		font-size: 1.5em;
+		font-weight: 400;
     color: var(--text-contrast);
   }
   .satellite-info {

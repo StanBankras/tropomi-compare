@@ -20,14 +20,17 @@
   justify-content: center;
   img {
     margin-right: 4rem;
-    max-width: 200px;
+    max-width: 600px;
   }
   h1 {
-    color: var(--text-contrast);
+		color: var(--text-contrast);
+		font-size: 2em;
   }
   p {
     color: var(--text-contrast);
-    max-width: 30rem;
+		max-width: 30rem;
+		font-size: 1.25em;
+		line-height: 1.2em;
   }
 }
 @media only screen and (max-width: 320px) {
@@ -40,7 +43,10 @@
     h1,
     p {
       margin: 0.5em 5% 0 5%;
-    }
+		}
+		p{
+			font-size: 1em;
+		}
 		h1 {
 			margin: 1em 5% 0 5%;
 		}

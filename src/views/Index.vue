@@ -6,6 +6,7 @@
     <div id="tool">
       <compare/>
     </div>
+		<sources/>
   </div>
 </template>
 
@@ -14,10 +15,11 @@ import HeaderComp from '@/components/Header';
 import Explanation from '@/components/explanation/Index';
 import Compare from '@/components/compare/Index';
 import Tutorial from '@/components/explanation/Tutorial';
+import Sources from '@/components/sources/Sources';
 
 export default {
   components: {
-    Compare, HeaderComp, Explanation, Tutorial
+    Compare, HeaderComp, Explanation, Tutorial, Sources
   },
   methods: {
     scroll() {
