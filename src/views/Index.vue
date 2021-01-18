@@ -4,9 +4,8 @@
     <explanation/>
     <tutorial @scrollTo="scroll"/>
     <div id="tool">
-      <compare/>
+      <compare @download="download"/>
     </div>
-    <button @click="download">download</button>
 		<sources/>
   </div>
 </template>
