@@ -2,8 +2,20 @@
   <div v-if="country && chartData.length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
-        <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
-        <h3>{{ fullCountry.city }}</h3>
+        <div>
+          <img :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${ fullCountry.countryCode }.svg`"/>
+          <h3>{{ fullCountry.city }}</h3>
+        </div>
+        <div class="labels">
+          <div @click="hideNo2 = !hideNo2" :class="{ inactive: hideNo2 }" class="label">
+            <img src="@/assets/img/no2_label.svg" alt="">
+            <p>NO2 Emission difference (2019-2020) in %</p>
+          </div>
+          <div @click="hideFlights = !hideFlights" :class="{ inactive: hideFlights }" class="label">
+            <img src="@/assets/img/flights_label.svg" alt="">
+            <p>Amount of flights difference (2019-2020) in %</p>
+          </div>
+        </div>
       </div>
       <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
         <g clip-path="url(#chart)" :transform="`translate(${ yPadding * 2 }, ${ xPadding })`">
@@ -27,8 +39,8 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
-            <path class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
+            <path v-if="!hideFlights" class="line" style="stroke: purple; opacity: 0.4" :d="line(slicedFlightData)"/>
+            <path v-if="!hideNo2" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
           </g>
         </g>
         <g transform="translate(0, 40)">
@@ -246,6 +258,8 @@ export default {
       multiplier: 0.75,
       barHeight: 13,
       width: 400,
+      hideNo2: false,
+      hideFlights: false,
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
@@ -320,6 +334,28 @@ export default {
     display: flex;
     align-items: center;
     margin-left: 2.5rem;
+    justify-content: space-between;
+    .labels {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      .label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+        cursor: pointer;
+        user-select: none;
+        &.inactive {
+          text-decoration: line-through;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
     img {
       max-height: 25px;
       margin-right: 1rem;
