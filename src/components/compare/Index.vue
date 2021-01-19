@@ -114,7 +114,7 @@ export default {
       no2MinMax: [0, 0],
       countryA: 'IT',
       countryB: 'CN',
-      activeLabels: ['no2', 'flights', 'traffic']
+      activeLabels: ['no2', 'flights', 'traffic', 'stringency']
     }
   },
   mounted() {

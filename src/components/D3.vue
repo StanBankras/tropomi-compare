@@ -25,6 +25,20 @@
             <img src="@/assets/img/traffic_label.svg" alt="">
             <p>Road congestion difference *</p>
           </div>
+          <div @click="editLabel('stringency')" :class="{ inactive: !labels.includes('stringency') }" class="label">
+            <img src="@/assets/img/area.svg" alt="">
+            <p>Stringency Index <span @mouseover="showStringencyExplanation = true" @mouseleave="showStringencyExplanation = false">(?)</span></p>
+          </div>
+        </div>
+        <div class="explanation" v-if="showStringencyExplanation">
+          <p class="header">What is the stringency index?</p>
+          <p>The stringency index is a composite measure of the strictness of policy responses.</p>
+          <p>
+            The index on any given day is calculated as the mean score of nine policy measures, each taking a
+            value between 0 and 100.
+          </p>
+          <p>A higher score indicates a stricter government response (i.e. 100 = strictest response)</p>
+          <p>Data from Ourworldindata (linked in references)</p>
         </div>
       </div>
       <svg v-if="chartData" :width="chartWidth" :height="chartHeight + 10">
@@ -49,7 +63,7 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
-            <path class="area" style="stroke: black; opacity: 0.06; fill: black;" :d="area(slicedStringencyIndex)"/>
+            <path v-if="labels.includes('stringency')" class="area" style="stroke: black; opacity: 0.06; fill: black;" :d="area(slicedStringencyIndex)"/>
             <path v-if="labels.includes('flights')" class="line" style="stroke: black; opacity: 0.3" :d="line(slicedFlightData)"/>
             <path v-if="labels.includes('traffic')" class="line" style="stroke: pink; opacity: 1" :d="line(slicedTrafficData)"/>
             <path v-if="labels.includes('no2')" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
@@ -329,7 +343,8 @@ export default {
       multiplier: 0.78,
       barHeight: 12,
       width: 400,
-      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      showStringencyExplanation: false
     }
   },
   mounted() {
@@ -437,6 +452,7 @@ export default {
     }
     .labels {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       width: 100%;
@@ -454,8 +470,10 @@ export default {
       .label {
         display: flex;
         align-items: center;
+        width: 50%;
         cursor: pointer;
         user-select: none;
+        margin-bottom: 0.5rem;
         &.inactive {
           text-decoration: line-through;
         }
@@ -551,6 +569,24 @@ export default {
 		color: var(--text-box);
 		font-size: 1em;
 		line-height: 1.2em;
+  }
+  .explanation {
+    padding: 1rem;
+    background-color: var(--space-blue);
+    width: 100%;
+    margin: 1rem 0;
+    p {
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+      font-size: 12px;
+      max-width: 40rem;
+    }
+    .header {
+      font-weight: bold;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+    }
   }
   @keyframes color {
     0% {
