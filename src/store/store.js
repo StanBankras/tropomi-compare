@@ -3,6 +3,7 @@ import { measures } from '@/models/measures.js';
 import { measuresPerCountryCode } from '@/models/countryMeasures.js';
 
 import lookup from 'country-code-lookup';
+import dayjs from 'dayjs';
 
 const store = createStore({
   state() {
@@ -24,6 +25,7 @@ const store = createStore({
       measuresPerCountry: {},
       flightDataPerCountry: {},
       trafficDataPerCountry: {},
+      stringencyIndexPerCountry: {},
       extremes: []
     }
   },
@@ -35,6 +37,7 @@ const store = createStore({
     no2PerCountry: state => state.no2PerCountry,
     flightDataPerCountry: state => state.flightDataPerCountry,
     trafficDataPerCountry: state => state.trafficDataPerCountry,
+    stringencyIndexPerCountry: state => state.stringencyIndexPerCountry,
     extremes: state => state.extremes,
     countries: state => {
       return state.countries.map(country => {
@@ -66,6 +69,9 @@ const store = createStore({
     },
     SET_EXTREMES(state, payload) {
       state.extremes = payload;
+    },
+    SET_STRINGENCY_INDICES(state, payload) {
+      state.stringencyIndexPerCountry = payload;
     }
   },
   actions: {
@@ -91,6 +97,40 @@ const store = createStore({
             commit('SET_COUNTRY_NO2', { countryCode: country.countryCode, values: data })
           });
       });
+    },
+    getStringencyIndices: ({ commit, state }) => {
+      const indices = localStorage.getItem('stringencyIndices');
+      if(indices) return commit('SET_STRINGENCY_INDICES', JSON.parse(indices));
+
+      fetch(`./json/stringency_index.json`)
+        .then(res => res.json())
+        .then(data => {
+          const countryCodes = state.countries.map(c => lookup.byIso(c.countryCode).iso3);
+          const obj = {};
+
+          countryCodes.forEach(code => {
+            const countryData = data
+              .filter(d => d.Code === code)
+              .map(d => {
+                return {
+                  date: d.Date,
+                  value: d.stringency_index
+                }
+              });
+
+            const weeklyMapped = {};
+
+            for(let i = 1; i < 53; i++) {
+              const weekData = countryData.filter(c => dayjs(c.date).week() === i);
+              weeklyMapped[i] = weekData.reduce((acc, curr) => acc + curr.value, 0) / weekData.length;
+            }
+            
+            obj[lookup.byIso(code).iso2] = weeklyMapped;
+          });
+          
+          commit('SET_STRINGENCY_INDICES', obj);
+          localStorage.setItem('stringencyIndices', JSON.stringify(obj))
+        });
     },
     getFlightData: ({ commit }) => {
       fetch(`./json/flightData.json`)

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="country && chartData.length > 0">
+  <div v-if="country && chartData.length > 0 && stringencyIndex && Object.keys(stringencyIndex).length > 0">
     <div ref="chart" class="chart" :id="`chart-${id}`">
       <div class="header">
         <div class="name">
@@ -49,6 +49,7 @@
               v-for="barData in bar.fromTo" :key="barData"/>
           </g>
           <g :transform="`translate(${ xPadding * 0.5 }, ${ 0 })`">
+            <path class="area" style="stroke: black; opacity: 0.06; fill: black;" :d="area(slicedStringencyIndex)"/>
             <path v-if="labels.includes('flights')" class="line" style="stroke: black; opacity: 0.3" :d="line(slicedFlightData)"/>
             <path v-if="labels.includes('traffic')" class="line" style="stroke: pink; opacity: 1" :d="line(slicedTrafficData)"/>
             <path v-if="labels.includes('no2')" class="line" :style="`stroke: url(#svgGradient-${id})`" :d="line(slicedChartData)"/>
@@ -176,10 +177,13 @@
     </div>
     <p class="note">* Difference is 2020 data vs 2019 data in percentages</p>
   </div>
+  <div v-else>
+    <img src="@/assets/img/loader.svg"/>
+  </div>
 </template>
 
 <script>
-import { scaleLinear, line, curveBasis } from 'd3';
+import { scaleLinear, line, curveBasis, area } from 'd3';
 
 export default {
   props: ['week', 'id', 'zoomMeasure', 'minMax', 'measures', 'country', 'domain', 'labels'],
@@ -202,7 +206,7 @@ export default {
       return this.countries.find(c => c && c.countryCode === this.country) || { countryCode: 'NL' };
     },
     maxValue() {
-      return Math.max(...this.slicedChartData.map(d => d[1]));
+      return Math.max(...this.slicedChartData.map(d => d[1]), 100);
     },
     yScale() {
       return scaleLinear()
@@ -234,6 +238,12 @@ export default {
         .curve(curveBasis)
         .x(d => this.xScale(d[0]))
         .y(d => this.yScale(d[1]));
+    },
+    area() {
+      return area()
+        .x(d => this.xScale(d.week))
+        .y0(this.yScale(0))
+        .y1(d => this.yScale(d.value));
     },
     no2PerCountry() {
       return this.$store.getters.no2PerCountry;
@@ -291,6 +301,24 @@ export default {
     flightData() {
       const data = this.$store.getters.flightDataPerCountry[this.country] || [];
       return data.map((d, i) => [i, d]);
+    },
+    stringencyIndex() {
+      return (this.$store.getters.stringencyIndexPerCountry || {})[this.country];
+    },
+    slicedStringencyIndex() {
+      if(!this.stringencyIndex) return [];
+      const weeks = Object.keys(this.stringencyIndex);
+      if(weeks.length === 0) return [];
+      const data = weeks.map(w => {
+        return {
+          week: w,
+          value: this.stringencyIndex[w]
+        }
+      });
+
+      data.push({ week: 53, value: data[data.length - 1].value });
+
+      return data;
     }
   },
   data() {
