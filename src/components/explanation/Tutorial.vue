@@ -94,6 +94,12 @@ h2{
 	font-weight: 700;
 	font-size: 2em;
 }
+a{
+	color: var(--text-box);
+}
+a:hover{
+	color:teal;
+}
 
 @media only screen and (max-width: 320px) {
 	.container > div {

@@ -97,7 +97,7 @@
     box-shadow: 0 0 1rem 0.005rem black;
     padding: 1.75rem 7.5rem 1.75rem 2rem;
     width: 50.75rem;
-    font-size: 1.75em;
+    font-size: 1.25em;
     border-radius: 40px;
     color: var(--text-contrast);
     transform: translate(-28%, 150%);
