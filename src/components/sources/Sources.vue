@@ -89,7 +89,7 @@ h3{
 }
 
 p{
-	font-size: 1em;
+	font-size: 0.5em;
 }
 }
 </style>
