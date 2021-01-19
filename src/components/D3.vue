@@ -310,6 +310,9 @@ export default {
   mounted() {
     this.width = (this.$refs.chart || { clientWidth: 400 }).clientWidth - 32;
     window.addEventListener('resize', () => this.onResize());
+    setTimeout(() => {
+      this.width = (this.$refs.chart || { clientWidth: 400 }).clientWidth - 32;
+    }, 1000);
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.onResize());
