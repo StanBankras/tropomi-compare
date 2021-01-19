@@ -225,7 +225,7 @@ export default {
     transition: .3s;
     &:hover {
       border-color: var(--space-blue-light);
-      color: var(--space-blue-light);
+      color: var(--space-blue-dark);
     }
   }
   .border {
