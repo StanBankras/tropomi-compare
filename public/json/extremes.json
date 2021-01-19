@@ -1,9 +1,45 @@
 [
   {
     "NL": [
+    ],
+    "IT": [
       {
-        "week": 39,
-        "text": "This happened in week 39 and might explain the big fluctuation to the upside."
+        "week": 51,
+        "text": "Unfavorable weather conditions might have caused the satellite to record different values than in reality"
+      }
+    ],
+    "IN": [
+      {
+        "week": 8,
+        "text": "Covid-19 infections are rising but no lockdown yet in New Delhi. The city is still busy as before which is visible from the NO2 readings. There was a night curfew going on, but for the NO2 this effect seemed barely noticable."
+      },
+      {
+        "week": 27,
+        "text": "Lockdown in safer areas is slowly becoming less strict, but no extra flexibility for containment zones where the virus was spreading quickly."
+      },
+      {
+        "week": 43,
+        "text": "Lockdown was partially lifted, in some states public transport was opened again and some tourist and entertainment attractions were opened again."
+      }
+    ],
+    "GB": [
+      {
+        "week": 32,
+        "text": "The stay at home orders are partially lifted, people are allowed to go into office again for work."
+      },
+      {
+        "week": 36,
+        "text": "In this week there was a big rise of NO2 in London. The reason behind this rise could be the Black Lives Matter movement protests in London and the day before, a protest for the anti Covid-19 measures."
+      },
+      {
+        "week": 50,
+        "text": "In this week lots of people are doing their shoppings for the holidays. It could also possibly coincide with the first Covid-19 vaccine being given that could change people's behaviour."
+      }
+    ],
+    "KR": [
+      {
+        "week": 45,
+        "text": "Amount of COVID-19 infections dropping quickly, according to Reuters the South Korean goverment eases social distancing measures to allow bars, nightclubs and stadiums to re-open again as long as people abide by anti-virus guidelines."
       }
     ]
   }

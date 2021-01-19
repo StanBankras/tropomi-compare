@@ -60,10 +60,7 @@
                 v-if="extreme.week >= domain[0] && extreme.week <= domain[1]"
                 d="M11.433,3l2.606,5.279,5.827.852L15.65,13.238l1,5.8L11.433,16.3,6.221,19.04l1-5.8L3,9.131l5.827-.852Z"
                 fill="#7a7a7a"
-                stroke="#7a7a7a"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
+                class="extreme"
                 style="cursor: pointer;"
                 :transform="`translate(${xScale(extreme.week) - 8}, ${Number(line([chartData.find(c => c[0] === extreme.week - 1), chartData.find(c => c[0] === extreme.week), chartData.find(c => c[0] === extreme.week + 1)]).split(',')[8]) - 4})`">
                 <title>{{ extreme.text }}</title>
@@ -508,6 +505,10 @@ export default {
   .extremes {
     position: relative;
     z-index: 1000;
+    .extreme {
+      animation: color 1s linear infinite;
+      stroke: rgb(77, 77, 77);
+    }
   }
   .note {
     margin-top: 2rem;
@@ -522,5 +523,16 @@ export default {
 		color: var(--text-box);
 		font-size: 1em;
 		line-height: 1.2em;
-	}
+  }
+  @keyframes color {
+    0% {
+      fill: rgb(255, 140, 46);
+    }
+    50% {
+      fill:rgb(255, 72, 0);
+    }
+    100% {
+      fill: rgb(255, 140, 46);
+    }
+  }
 </style>
