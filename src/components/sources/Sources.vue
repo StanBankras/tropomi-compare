@@ -36,39 +36,7 @@
         Million People March in Notting Hill. The Independent.
         https://www.independent.co.uk/news/uk/home-news/million-people-march-protest-racism-notting-hill-blm-a9696506.html
       </p>
-      <h3>Air traffic metrics</h3>
-      <p>
-        NARITA INTERNATIONAL AIRPORT CORPORATION. (2020a). NARITA AIRPORT
-        TRAFFIC STATISTICS -2019(JAN-DEC). NARITA AIRPORT TRAFFIC STATISTICS -
-        2019(JAN-DEC). https://www.naa.jp/en/airport/pdf/statistics20200326.pdf
-      </p>
-      <p>
-        Incheon Airport. (2020). Incheon International Airport Statistics.
-        https://www.airport.kr/co/en/cpr/statisticCategoryOfDay.do
-      </p>
-      <p>
-        STATISTICS REPORT 2019. (2020).
-        https://www.riga-airport.com/uploads/files/Statistika/12_RIX_Statistics%202019_DEC.pdf
-      </p>
-      <p>
-        Isavia. (n.d.). Passenger statistics. Retrieved 11 January 2021, from
-        https://www.isavia.is/en/corporate/about-isavia/reports-and-statistics/passenger-statistics/passenger-statistics
-      </p>
-      <p>
-        Heathrow Airport. (2020). Traffic Statistics | Heathrow.
-        https://www.heathrow.com/company/investor-centre/reports/traffic-statistics
-      </p>
-      <p>
-        Airports Authority Of India. (n.d.). AAI TRAFFIC NEWS. Retrieved 6
-        January 2021, from
-        https://www.aai.aero/en/business-opportunities/aai-traffic-news
-      </p>
-      <p>
-        NARITA INTERNATIONAL AIRPORT CORPORATION. (2020b). NARITA AIRPORT
-        TRAFFIC STATISTICS -2020(JAN-DEC).
-        https://www.naa.jp/en/airport/pdf/statistics20201224.pdf
-      </p>
-      <p>
+			<p>
         Riga Airport. (2020). STATISTICS REPORT 2020.
         https://www.riga-airport.com/uploads/statistika/9_RIX_Statistics%202020_Okt.pdf
       </p>
@@ -109,6 +77,38 @@
         Roser, M. (2020, May 26). South Korea: Coronavirus Pandemic Country
         Profile. Our World in Data.
         https://ourworldindata.org/coronavirus/country/south-korea?country=KOR%7EJPN
+      </p>
+      <h3>Air traffic metrics</h3>
+      <p>
+        NARITA INTERNATIONAL AIRPORT CORPORATION. (2020a). NARITA AIRPORT
+        TRAFFIC STATISTICS -2019(JAN-DEC). NARITA AIRPORT TRAFFIC STATISTICS -
+        2019(JAN-DEC). https://www.naa.jp/en/airport/pdf/statistics20200326.pdf
+      </p>
+      <p>
+        Incheon Airport. (2020). Incheon International Airport Statistics.
+        https://www.airport.kr/co/en/cpr/statisticCategoryOfDay.do
+      </p>
+      <p>
+        STATISTICS REPORT 2019. (2020).
+        https://www.riga-airport.com/uploads/files/Statistika/12_RIX_Statistics%202019_DEC.pdf
+      </p>
+      <p>
+        Isavia. (n.d.). Passenger statistics. Retrieved 11 January 2021, from
+        https://www.isavia.is/en/corporate/about-isavia/reports-and-statistics/passenger-statistics/passenger-statistics
+      </p>
+      <p>
+        Heathrow Airport. (2020). Traffic Statistics | Heathrow.
+        https://www.heathrow.com/company/investor-centre/reports/traffic-statistics
+      </p>
+      <p>
+        Airports Authority Of India. (n.d.). AAI TRAFFIC NEWS. Retrieved 6
+        January 2021, from
+        https://www.aai.aero/en/business-opportunities/aai-traffic-news
+      </p>
+      <p>
+        NARITA INTERNATIONAL AIRPORT CORPORATION. (2020b). NARITA AIRPORT
+        TRAFFIC STATISTICS -2020(JAN-DEC).
+        https://www.naa.jp/en/airport/pdf/statistics20201224.pdf
       </p>
       <h3>Traffic congestion data</h3>
       <p>

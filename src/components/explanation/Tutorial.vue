@@ -42,7 +42,15 @@
 			</p>
 		</div>
 
-		<img src="@/assets/img/animate4.gif" alt="corona measure bars">
+		<img src="@/assets/img/animate4.gif" alt="corona measure bars animation">
+
+		<div class="textBox">
+			<h2>Close in on the data</h2>
+			<p>Filter out the data you don't need by clicking on the labels.
+			</p>
+		</div>
+
+		<img src="@/assets/img/animate5.gif" alt="corona label toggle animation">
   </div>
 </template>
 
