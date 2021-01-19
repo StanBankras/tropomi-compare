@@ -7,19 +7,19 @@ _Compare the measures taken during the COVID-19 crisis in different capital citi
 -----
 
 ## Table of contents
-* Concept
-* Getting started
-  	* Prerequisites
-    * Installation
-* Usage
-* Contributors
-* License
-* Acknowledgements
+* [Concept](https://github.com/StanBankras/tropomi-compare#concept)
+* [Getting started](https://github.com/StanBankras/tropomi-compare#getting-started)
+  	* [Prerequisites](https://github.com/StanBankras/tropomi-compare#prerequisites)
+    * [Installation](https://github.com/StanBankras/tropomi-compare#installation)
+* [Usage](https://github.com/StanBankras/tropomi-compare#usage)
+* [Contributors](https://github.com/StanBankras/tropomi-compare#contributors)
+* [License](https://github.com/StanBankras/tropomi-compare#license)
+* [Acknowledgements](https://github.com/StanBankras/tropomi-compare#acknowledgements)
 
-## Concept
+## :crystal_ball: Concept
 The corona virus has caused humans in cities across the world to behave differently due to measures that were taken to limit the spread. There is a possibility that some of the taken measures have reduced the NO2 concentrations in the air. This tool can compair two cities at a time, with a chart that shows the difference between 2019 and 2020 in NO2 emission. Underneath this, measures that were taken are shown. The aim is that this allows the user to discover interesting patterns in the data.
 
-## Getting started
+## :arrow_forward: Getting started
 This example shows how to setup this project locally. Follow the steps below.
 
 ### Prerequisites
@@ -43,7 +43,7 @@ npm run serve
 yarn serve
 ```
 
-## Usage
+## :wrench: Usage
 The charts are based on data that is collected manually. New datapoints can be added to for example add measures or add new countries to the tool.
 
 All JSON files can be found in `public/json` and can be edited to add new items.
@@ -87,13 +87,13 @@ If a new country is added to the project, it is required to add this country to 
   ]
 ```
 
-## Contributors
+## :smiley: Contributors
 * Chun Xiao - [process](https://www.dropbox.com/scl/fi/fwvnjz2bk71rxzdgr9goe/Processboek-Chun-Hui-Xiao-KNMI-project.paper?dl=0&rlkey=bg0wjegcb8n2j7zb2quccjqql) (Dutch)
 * Denise Mori - [process](https://denise-mori1996.gitbook.io/information-design/) (Dutch)
 * Jordi Sahit - [process](https://www.notion.so/Procesboek-a32fde15151c4266b093b7d3942dfb06) (Dutch)
 * Stan Bankras  - [process](https://stanbankras.gitbook.io/information-design-knmi/) (Dutch)
 
-## License
+## :black_nib: License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Acknowledgements
+## :scroll: Acknowledgements
