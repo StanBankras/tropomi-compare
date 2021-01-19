@@ -1,7 +1,8 @@
 <template>
   <div id="compare">
     <div class="select">
-      <h2>Choose a COVID-19 measure to zoom in to</h2>
+      <h2 v-if="countryA || countryB">Choose a COVID-19 measure to zoom in to</h2>
+      <h2 v-else>Choose countries</h2>
       <div class="labels">
         <div
           @click="measure === label ? measure = undefined : measure = label"
@@ -112,8 +113,8 @@ export default {
       measures: [0, 0],
       measure: undefined,
       no2MinMax: [0, 0],
-      countryA: 'IT',
-      countryB: 'CN',
+      countryA: undefined,
+      countryB: undefined,
       activeLabels: ['no2', 'flights', 'traffic', 'stringency']
     }
   },
@@ -121,6 +122,9 @@ export default {
     this.$store.dispatch('getNO2Data');
     this.$store.dispatch('getMeasures');
     this.executeParameters();
+    setTimeout(() => {
+      this.updateData();
+    }, 2000);
   },
   methods: {
     no2Values(country) {
