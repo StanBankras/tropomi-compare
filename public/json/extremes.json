@@ -1,6 +1,30 @@
 [
   {
     "NL": [
+      {
+        "week": 2,
+        "text": "In this week new years was celebrated with lots of fireworks, this might have caused the satellite to record different values than in reality."
+      },
+      {
+        "week": 28,
+        "text": "Unfavorable weather conditions might have caused the satellite to record different values than in reality. It's also summervacation, traffic data shows people are slowly going out more."
+      },
+      {
+        "week": 32,
+        "text": "News companies are reporting that infections amongst teens and younger adults are increasing, this could explain this peak. Summervacation is also ending, possibly causing these young people to meet up again."
+      },
+      {
+        "week": 39,
+        "text": "Schools are in full swing again, elementary and high-schools are open and there's also people who head to work despite stay-at-home orders. Most universities now start to offer some offline classes."
+      },
+      {
+        "week": 48,
+        "text": "Infections are increasing in schools. But also, unfavorable weather conditions might have caused the satellite to record different values than in reality."
+      },
+      {
+        "week": 52,
+        "text": "This is the week after christmas, many people have shown they did not follow the governments guideline on only celebrating christmas with two guests outside of their household but with many more. This might've caused people to move more and possibly also cause more infections."
+      }
     ],
     "IT": [
       {
@@ -40,6 +64,24 @@
       {
         "week": 45,
         "text": "Amount of COVID-19 infections dropping quickly, according to Reuters the South Korean goverment eases social distancing measures to allow bars, nightclubs and stadiums to re-open again as long as people abide by anti-virus guidelines."
+      }
+    ],
+    "JP": [
+      {
+        "week": 6,
+        "text": "On 1 February, a passenger of the cruise ship Diamond Princess that had disembarked in Hong Kong on 25 January, tested positive for COVID-19. Some days later the Japanese government announced that several passengers of the cruise ship had tested positive for COVID-19."
+      },
+      {
+        "week": 9,
+        "text": "In the last weeks multiple prefectures reported their first cases for COVID-19."
+      },
+      {
+        "week": 27,
+        "text": "The NO2 data could be incorrect due to poor weather conditions."
+      },
+      {
+        "week": 52,
+        "text": "Unlike most other countries, Japan has not been in a lockdown. Since Christmas finds place in December, family and friends want to see each other and this means that people get together. These get-togethers could be the reason why the NO2 has risen dramatically."
       }
     ]
   }
