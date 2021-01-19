@@ -39,3 +39,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+#tool {
+  background-color: white;
+}
+</style>
