@@ -97,3 +97,5 @@ If a new country is added to the project, it is required to add this country to 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## :scroll: Acknowledgements
+* [ObservableHQ for help with D3 snippets](https://observablehq.com/@d3/d3-line)
+* [Setting up Vue 3 store - Dev.to](https://dev.to/daniel_adekoya_/how-to-initialize-vuex-in-the-new-vue-3-preview-49ef)
