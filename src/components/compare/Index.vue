@@ -231,7 +231,7 @@ export default {
     transition: .3s;
     align-self: flex-end;
     &:hover {
-      border-color: var(--space-blue-light);
+      border-color: var(--space-blue-dark);
       color: var(--space-blue-dark);
     }
   }
