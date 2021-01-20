@@ -12,7 +12,7 @@ _Compare the measures taken during the COVID-19 crisis in different capital citi
   	* [Prerequisites](https://github.com/StanBankras/tropomi-compare#prerequisites)
     * [Installation](https://github.com/StanBankras/tropomi-compare#installation)
 * [Usage](https://github.com/StanBankras/tropomi-compare#usage)
-* [Contributors](https://github.com/StanBankras/tropomi-compare#contributors)
+* [Contributors & rationale](https://github.com/StanBankras/tropomi-compare#contributors)
 * [License](https://github.com/StanBankras/tropomi-compare#license)
 * [Acknowledgements](https://github.com/StanBankras/tropomi-compare#acknowledgements)
 
@@ -87,11 +87,12 @@ If a new country is added to the project, it is required to add this country to 
   ]
 ```
 
-## :smiley: Contributors
+## :smiley: Contributors & rationale
 * Chun Xiao - [process](https://www.dropbox.com/scl/fi/fwvnjz2bk71rxzdgr9goe/Processboek-Chun-Hui-Xiao-KNMI-project.paper?dl=0&rlkey=bg0wjegcb8n2j7zb2quccjqql) (Dutch)
 * Denise Mori - [process](https://denise-mori1996.gitbook.io/information-design/) (Dutch)
 * Jordy Sahit - [process](https://www.notion.so/Procesboek-a32fde15151c4266b093b7d3942dfb06) (Dutch)
 * Stan Bankras  - [process](https://stanbankras.gitbook.io/information-design-knmi/) (Dutch)
+* [Design rationale](https://www.notion.so/Design-rationale-00e275a32fc04b5395ce6380570232c1)
 
 ## :black_nib: License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
