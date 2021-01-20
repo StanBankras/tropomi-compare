@@ -185,10 +185,12 @@ export default {
     countryA() {
       this.updateData();
       this.updateQueries();
+      this.measure = undefined;
     },
     countryB() {
       this.updateData();
       this.updateQueries();
+      this.measure = undefined;
     },
     measure() {
       this.updateQueries();

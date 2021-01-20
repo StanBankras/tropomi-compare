@@ -6,6 +6,7 @@
     <div id="tool">
       <compare @download="download"/>
     </div>
+    <findings/>
 		<sources/>
   </div>
 </template>
@@ -16,12 +17,13 @@ import Explanation from '@/components/explanation/Index';
 import Compare from '@/components/compare/Index';
 import Tutorial from '@/components/explanation/Tutorial';
 import Sources from '@/components/sources/Sources';
+import Findings from '@/components/Findings';
 
 import { toPng } from 'html-to-image';
 
 export default {
   components: {
-    Compare, HeaderComp, Explanation, Tutorial, Sources
+    Compare, HeaderComp, Explanation, Tutorial, Sources, Findings
   },
   methods: {
     scroll() {
