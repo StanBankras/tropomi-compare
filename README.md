@@ -12,7 +12,7 @@ _Compare the measures taken during the COVID-19 crisis in different capital citi
   	* [Prerequisites](https://github.com/StanBankras/tropomi-compare#prerequisites)
     * [Installation](https://github.com/StanBankras/tropomi-compare#installation)
 * [Usage](https://github.com/StanBankras/tropomi-compare#usage)
-* [Contributors & rationale](https://github.com/StanBankras/tropomi-compare#contributors)
+* [Contributors & rationale](https://github.com/StanBankras/tropomi-compare#smiley-contributors--rationale)
 * [License](https://github.com/StanBankras/tropomi-compare#license)
 * [Acknowledgements](https://github.com/StanBankras/tropomi-compare#acknowledgements)
 
