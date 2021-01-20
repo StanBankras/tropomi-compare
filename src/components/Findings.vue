@@ -30,8 +30,8 @@
           <img src="@/assets/img/findings/london.png" alt="">
           <img src="@/assets/img/findings/london_measures.png" alt="">
           <p>
-            In London, while a lot of measures were still active, were big Black lives matter protests going on in August 2020. This is the only reason
-            this dramatic increase in NO<sub>2</sub> emission can be explained by. The protests must have caused a lot of people to travel towards London, which caused
+            In London, while a lot of measures were still active, there were big Black lives matter protests going on in August 2020. This is the only reason
+            this dramatic increase in NO<sub>2</sub> emission can be explained. The protests must have caused a lot of people to travel towards London, which caused
             extra emissions.
           </p>
         </div>

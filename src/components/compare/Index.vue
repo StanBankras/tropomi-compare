@@ -229,6 +229,7 @@ export default {
     cursor: pointer;
     width: 140px;
     transition: .3s;
+    align-self: flex-end;
     &:hover {
       border-color: var(--space-blue-light);
       color: var(--space-blue-dark);
@@ -258,7 +259,7 @@ export default {
     display: flex;
     flex-direction: column;
     .right {
-      align-self: flex-end;
+      align-self: flex-start;
     }
   }
 }
