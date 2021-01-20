@@ -409,7 +409,7 @@ export default {
       if(title === 'movementRestrictions') return '#978BF7';
       if(title === 'socialDistancing') return '#009B72';
       if(title === 'quarantineIsolation') return '#F26430';
-      if(title === 'lockdown') return '#2A2D34';
+      if(title === 'lockdown') return '#F0FF23';
       return '#41C6FC';
     },
     editLabel(label) {

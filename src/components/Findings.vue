@@ -64,6 +64,24 @@
         </div>
       </div>
     </div>
+    <div class="finding">
+      <h3>Stringency index has a clear relation to the NO<sub>2</sub> emissions</h3>
+      <div class="wrap">
+        <div>
+          <img src="@/assets/img/findings/beijing.png" alt="">
+          <p>
+            In Beijing, China, the government was a lot more strict with the implemented rules than Tokyo. You can clearly see when the stringency index goes down here,
+            the NO<sub>2</sub> levels can see a rise again.
+          </p>
+        </div>
+        <div>
+          <img src="@/assets/img/findings/tokyo.png" alt="">
+          <p>
+            In Tokyo, the stringency index never moves above 50%, so the strictness of the rules applied here don't have that much of a correlation to the NO<sub>2</sub> values.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
