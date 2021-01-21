@@ -9,17 +9,17 @@
 		<div class="textBox">
 			<h2>Hover over the chart</h2>
 			<p>Whenever you hover over one of the charts with your mouse, the other
-				one will follow along with the week you are currently hovering over.
+				one will follow along with the week you are currently hovering on.
 			</p>
 		</div>
 
 		<img src="@/assets/img/animate1.gif" alt="slider animation">
 
 		<div class="textBox">
-			<h2>Select a COVID-19 measurement</h2>
-			<p>You can choose which measurement you want to compare the cities
+			<h2>Select a COVID-19 measure</h2>
+			<p>You can choose which measure you want to compare the cities
 				with. The chart will automatically zoom in based on the length
-				of each measurement.
+				of each measure.
 			</p>
 		</div>
 
@@ -29,16 +29,16 @@
 
 		<div class="textBox">
 			<h2>Click on the colourful bars</h2>
-			<p>They do the exact same as you would when you click on the buttons.</p>
+			<p>They do the exact same thing as when you click on the buttons.</p>
 		</div>
 
 		<img src="@/assets/img/animate3.gif" alt="filter animation">
 
 		<div class="textBox">
-			<h2>See the amount of measurements taken</h2>
-			<p>The darker the bar, the more measurements have been taken within
-				that same time period. When you hover over a bar, you can see which
-				measurements were taken in that week.
+			<h2>See the amount of measures taken</h2>
+			<p>The darker the bar, the more measures have been taken within
+				that time period. When you hover over a bar, you can see which
+				measures were active in that period.
 			</p>
 		</div>
 
