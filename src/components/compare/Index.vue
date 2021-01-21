@@ -113,8 +113,8 @@ export default {
       measures: [0, 0],
       measure: undefined,
       no2MinMax: [0, 0],
-      countryA: undefined,
-      countryB: undefined,
+      countryA: 'IT',
+      countryB: 'JP',
       activeLabels: ['no2', 'flights', 'traffic', 'stringency']
     }
   },
