@@ -19,6 +19,12 @@ _Compare the measures taken during the COVID-19 crisis in different capital citi
 ## :crystal_ball: Concept
 The corona virus has caused humans in cities across the world to behave differently due to measures that were taken to limit the spread. There is a possibility that some of the taken measures have reduced the NO2 concentrations in the air. This tool can compair two cities at a time, with a chart that shows the difference between 2019 and 2020 in NO2 emission. Underneath this, measures that were taken are shown. The aim is that this allows the user to discover interesting patterns in the data.
 
+## Tech / packages
+What does this project use?
+* Framework: [VueJS](https://vuejs.org/)
+* Charting / visualisation tool: [d3js](https://d3js.org/)
+
+
 ## :arrow_forward: Getting started
 This example shows how to setup this project locally. Follow the steps below.
 
