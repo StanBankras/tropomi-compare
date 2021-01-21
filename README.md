@@ -8,6 +8,7 @@ _Compare the measures taken during the COVID-19 crisis in different capital citi
 
 ## Table of contents
 * [Concept](https://github.com/StanBankras/tropomi-compare#concept)
+* [Tech / packages](https://github.com/StanBankras/tropomi-compare#tech--packages)
 * [Getting started](https://github.com/StanBankras/tropomi-compare#getting-started)
   	* [Prerequisites](https://github.com/StanBankras/tropomi-compare#prerequisites)
     * [Installation](https://github.com/StanBankras/tropomi-compare#installation)
